@@ -1,0 +1,116 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 16:45:55
+4.asm							     Page 1 - 1
+
+
+				; PROGRAM: 4.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Program to test the hex4dec
+				; 
+				; Version:	1.0
+
+				        ASSUME	cs:code, ds:data, ss:stak
+					EXTRN	outstr:FAR, getbyte:FAR, getword:FAR, outbyte:FAR, outword:FAR, newline:FAR
+					EXTRN	getc:FAR, hex4dec:FAR
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  B9 0000				mov	cx,0
+ 000E  BA 0000				mov	dx,0		
+ 0011  8D 3E 0000 R			lea	di,msg1
+
+ 0015  9A ---- 0000 E		start:	call	outstr
+ 001A  9A ---- 0000 E			call	getword
+ 001F  9A ---- 0000 E			call	hex4dec
+ 0024  50				push	ax
+ 0025  52				push	dx
+ 0026  8D 3E 0032 R			lea	di,msg2
+ 002A  9A ---- 0000 E			call	newline
+ 002F  9A ---- 0000 E			call	outstr
+ 0034  5A				pop	dx
+ 0035  8B C2				mov	ax,dx
+ 0037  9A ---- 0000 E			call	outbyte
+ 003C  58				pop	ax
+ 003D  9A ---- 0000 E			call	outword
+
+					
+ 0042  B8 4C00			shi:	mov	ax,4c00h
+ 0045  CD 21				int	21h
+ 0047				main	ENDP
+ 0047				code	ENDS
+
+					
+ 0000				data	SEGMENT
+ 0000 50 6C 65 61 73 65		msg1	db	"Please enter a word in hexadecimal to convert >> ",04h
+       20 65 6E 74 65 72
+       20 61 20 77 6F 72
+       64 20 69 6E 20 68
+       65 78 61 64 65 63
+       69 6D 61 6C 20 74
+       6F 20 63 6F 6E 76
+       65 72 74 20 3E 3E
+       20 04
+ 0032 54 68 65 20 63 6F		msg2	db	"The converted hex value in decimal is >> ",04
+       6E 76 65 72 74 65
+       64 20 68 65 78 20
+       76 61 6C 75 65 20
+       69 6E 20 64 65 63
+       69 6D 61 6C 20 69
+       73 20 3E 3E 20 04
+ 005C				data	ENDS
+
+
+ 0000				stak	SEGMENT	STACK
+ 0000  0400 [				dw	1024 dup (0)
+        0000
+       ]
+ 0800				stak	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 16:45:55
+4.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0047	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 005C	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0800	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0047 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0015	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0042	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+getbyte  . . . . . . . . . . . .	L Far	 0000	  External
+getc . . . . . . . . . . . . . .	L Far	 0000	  External
+getword  . . . . . . . . . . . .	L Far	 0000	  External
+hex4dec  . . . . . . . . . . . .	L Far	 0000	  External
+msg1 . . . . . . . . . . . . . .	Byte	 0000	  data	
+msg2 . . . . . . . . . . . . . .	Byte	 0032	  data	
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+outbyte  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+outword  . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors

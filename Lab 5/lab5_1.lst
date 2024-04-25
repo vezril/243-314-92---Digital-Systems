@@ -1,0 +1,129 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 15:57:08
+lab5_1.asm						     Page 1 - 1
+
+
+				; PROGRAM: lab6_1.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+
+ 0000				init:
+ 0000  B8 ---- R			mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B4 00				mov	ah,0
+				     
+ 0007				arith:
+ 0007  A0 0002 R			mov	al,byte1	;wax on
+ 000A  02 06 0003 R			add	al,byte2	;begin arith op
+ 000E  80 D4 00				adc	ah,0		;just to take care of any carry
+ 0011  02 06 0004 R			add	al,byte3
+ 0015  80 D4 00				adc	ah,0
+ 0018  02 06 0005 R			add	al,byte4
+ 001C  80 D4 00				adc	ah,0
+ 001F  02 06 0006 R			add	al,byte5
+ 0023  80 D4 00				adc	ah,0
+ 0026  02 06 0007 R			add	al,byte6
+ 002A  80 D4 00				adc	ah,0
+ 002D  02 06 0008 R			add	al,byte7
+ 0031  80 D4 00				adc	ah,0
+ 0034  02 06 0009 R			add	al,byte8
+ 0038  80 D4 00				adc	ah,0
+ 003B  02 06 000A R			add	al,byte9
+ 003F  80 D4 00				adc	ah,0
+ 0042  02 06 000B R			add	al,byte10
+ 0046  80 D4 00				adc	ah,0
+ 0049  02 06 000C R			add	al,byte11
+ 004D  80 D4 00				adc	ah,0
+ 0050  02 06 000D R			add	al,byte12
+ 0054  80 D4 00				adc	ah,0
+ 0057  02 06 000E R			add	al,byte13
+ 005B  80 D4 00				adc	ah,0
+ 005E  02 06 000F R			add	al,byte14
+ 0062  80 D4 00				adc	ah,0     	;end arith op
+ 0065  88 26 0010 R			mov	resm,ah		;wax off
+ 0069  A2 0011 R			mov	resl,al
+
+ 006C  B8 4C00			shi:	mov	ax,4c00h
+ 006F  CD 21			        int	21h
+
+ 0071				main    ENDP
+ 0071				code    ENDS
+
+ 0000				data	SEGMENT
+ 0000 FFFF			mkr1	dw	0FFFFh	;start marker   
+ 0002 A5			byte1	DB	0A5h
+ 0003 7B			byte2	DB	7bh
+ 0004 6E			byte3	DB	6eh
+ 0005 2D			byte4 	DB	2dh
+ 0006 1F			byte5	DB	1fh
+ 0007 0C			byte6	DB	0ch
+ 0008 77			byte7	DB	77h
+ 0009 99			byte8	DB	99h
+ 000A 10			byte9	DB	10h
+ 000B BB			byte10	DB	0bbh
+ 000C 3D			byte11	DB	3dh
+ 000D 43			byte12	DB	43h
+ 000E 55			byte13	DB	55h
+ 000F AA			byte14	DB	0AAh
+ 0010 00			resm	DB	?	;MSB for result
+ 0011 00			resl	DB	?	;LSB for result
+ 0012 FFFF			mkr2	dw	0FFFFh	;end marker
+ 0014				data	ENDS
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 15:57:08
+lab5_1.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0071	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0014	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0071 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  arith  . . . . . . . . . . . .	L Near	 0007	  code	
+  shi  . . . . . . . . . . . . .	L Near	 006C	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+byte10 . . . . . . . . . . . . .	Byte	 000B	  data	
+byte11 . . . . . . . . . . . . .	Byte	 000C	  data	
+byte12 . . . . . . . . . . . . .	Byte	 000D	  data	
+byte13 . . . . . . . . . . . . .	Byte	 000E	  data	
+byte14 . . . . . . . . . . . . .	Byte	 000F	  data	
+byte1  . . . . . . . . . . . . .	Byte	 0002	  data	
+byte2  . . . . . . . . . . . . .	Byte	 0003	  data	
+byte3  . . . . . . . . . . . . .	Byte	 0004	  data	
+byte4  . . . . . . . . . . . . .	Byte	 0005	  data	
+byte5  . . . . . . . . . . . . .	Byte	 0006	  data	
+byte6  . . . . . . . . . . . . .	Byte	 0007	  data	
+byte7  . . . . . . . . . . . . .	Byte	 0008	  data	
+byte8  . . . . . . . . . . . . .	Byte	 0009	  data	
+byte9  . . . . . . . . . . . . .	Byte	 000A	  data	
+mkr1 . . . . . . . . . . . . . .	Word	 0000	  data	
+mkr2 . . . . . . . . . . . . . .	Word	 0012	  data	
+resl . . . . . . . . . . . . . .	Byte	 0011	  data	
+resm . . . . . . . . . . . . . .	Byte	 0010	  data	
+
+	   0 Warnings
+	   0 Errors

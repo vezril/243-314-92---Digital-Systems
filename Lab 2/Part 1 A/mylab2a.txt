@@ -1,0 +1,29 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+C:\MASM>debug mylab2.exe
+-d
+0E3B:0000  B4 FD B0 8E B7 96 B3 66-B5 A5 B1 AA B6 18 B2 9B   .......f........
+0E3B:0010  A2 13 6A 01 E8 D1 11 8B-C6 5E 5F C2 06 00 55 8B   ..j......^_...U.
+0E3B:0020  EC 57 56 8B 46 0A 2D C8-00 74 07 48 48 74 30 E9   .WV.F.-..t.HHt0.
+0E3B:0030  80 00 8B 76 0C 68 B2 16-FF 36 E8 40 E8 87 9A 68   ...v.h...6.@...h
+0E3B:0040  FF 00 6A 00 68 B2 16 8B-DE B8 01 00 BA 06 00 E8   ..j.h...........
+0E3B:0050  DA 22 56 A1 E6 40 05 03-00 50 E8 23 23 EB 53 8B   ."V..@...P.##.S.
+0E3B:0060  7E 0C 6A 00 6A 00 6A 00-8B DF B8 01 00 BA 05 00   ~.j.j.j.........
+0E3B:0070  E8 B9 22 50 E8 2D 86 5B-8B F0 E8 07 A1 3B C6 74   .."P.-.[.....;.t
+-r
+AX=0000  BX=0000  CX=0010  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0000   NV UP EI PL NZ NA PO NC 
+0E3B:0000 B4FD          MOV     AH,FD                              
+-t
+
+AX=FD00  BX=0000  CX=0010  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0002   NV UP EI PL NZ NA PO NC 
+0E3B:0002 B08E          MOV     AL,8E                              
+-t
+
+AX=FD8E  BX=0000  CX=0010  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0004   NV UP EI PL NZ NA PO NC 
+0E3B:0004 B796          MOV     BH,96                              
+-q
+
+C:\MASM>tcap/u

@@ -1,0 +1,86 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/29/08 15:14:00
+8_1a.asm						     Page 1 - 1
+
+
+				; PROGRAM: 8_1.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Fahrenheit to Celcius Conversion Program
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8					mov	ds,ax
+ 0005  B8 0000					mov	ax,0
+ 0008  BB 0000					mov	bx,0
+ 000B  C6 06 0002 R 00				mov	eflag,0 
+
+ 0010  A0 0000 R		start:	mov	al,fah
+ 0013  3C 32				cmp	al,32h
+ 0015  72 16				jb	error
+ 0017  3C C8				cmp	al,0c8h
+ 0019  77 12				ja	error
+ 001B  2C 20				sub	al,20h
+ 001D  B3 05				mov	bl,5
+ 001F  F6 E3				mul	bl
+ 0021  B3 09				mov	bl,9
+ 0023  F6 F3				div	bl
+ 0025  A2 0001 R			mov	cel,al
+						
+ 0028  B8 4C00			shi:	mov	ax,4c00h
+ 002B  CD 21				int	21h
+
+ 002D  C6 06 0002 R FF		error:	mov	eflag,0FFh
+ 0032  EB F4				jmp	shi
+					
+ 0034				main	ENDP
+ 0034				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 C8			fah	db	0C8h
+ 0001 00			cel	db	0
+ 0002 00			eflag	db	0
+ 0003				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    10/29/08 15:14:00
+8_1a.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0034	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0003	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0034 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0010	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0028	  code	
+  error  . . . . . . . . . . . .	L Near	 002D	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+cel  . . . . . . . . . . . . . .	Byte	 0001	  data	
+eflag  . . . . . . . . . . . . .	Byte	 0002	  data	
+fah  . . . . . . . . . . . . . .	Byte	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

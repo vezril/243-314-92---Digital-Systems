@@ -1,0 +1,441 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/25/08 17:57:32
+2b.asm							     Page 1 - 1
+
+
+				; PROGRAM: 2.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Subroutines thingy
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data, ss:stak
+					EXTRN	outword:FAR, outstr:FAR, getc:FAR, outc:FAR, newline:FAR
+					
+ 0000				code    SEGMENT
+ 0000				main	PROC
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  B9 0000				mov	cx,0
+ 000E  BA 0000				mov	dx,0
+
+ 0011  E8 00A0			start:	call	input		
+ 0014  E8 00E4				call	upper
+ 0017  E8 010A				call	lower
+ 001A  E8 0137				call	number
+ 001D  E8 0164				call	nonalp
+ 0020  E8 003E				call	words
+ 0023  E8 0021				call	conv
+ 0026  E8 01AF				call	output
+ 0029  8D 3E 04EE R			lea	di,msg
+ 002D  9A ---- 0000 E			call	newline
+ 0032  9A ---- 0000 E			call	outstr
+ 0037  9A ---- 0000 E			call	getc
+ 003C  3C 59				cmp	al,59h
+ 003E  74 D1				je	start
+ 0040  3C 39				cmp	al,39h
+
+ 0042  B8 4C00			shi:	mov	ax,4c00h
+ 0045  CD 21				int	21h
+ 0047				main	ENDP
+				;-----------------------------
+ 0047				conv	PROC
+ 0047  83 06 0402 R 30			add	up,30h
+ 004C  83 06 040A R 30			add	wds,30h
+ 0051  83 06 0404 R 30			add	lowe,30h
+ 0056  83 06 0406 R 30			add	nume,30h
+ 005B  83 06 0408 R 30			add	nonal,30h
+ 0060  C3				ret	
+ 0061				conv	ENDP
+				;-----------------------------
+ 0061				words	PROC
+ 0061  B8 0000				mov	ax,0
+ 0064  BB 0000				mov	bx,0
+ 0067  8B 0E 0400 R			mov	cx,cnt
+ 006B  8D 36 0000 R			lea	si,stri
+ 006F  8A 04			pta:	mov	al,[si]
+ 0071  3C 41				cmp	al,"A"
+ 0073  72 31				jb	skip
+ 0075  3C 5A				cmp	al,"Z"
+ 0077  72 11				jb	begin
+ 0079  3C 61				cmp	al,"a"
+ 007B  72 29				jb	skip
+ 007D  3C 7A				cmp	al,"z"
+ 007F  72 09				jb	begin
+ 0081  46				inc 	si
+ 0082  49				dec	cx
+ 0083  83 F9 00				cmp	cx,0
+ 0086  74 27				je	done
+ 0088  EB E5				jmp	pta
+
+ 008A  43			begin:	inc	bx
+ 008B  46			good:	inc	si
+ 008C  49				dec	cx
+ 008D  83 F9 00				cmp	cx,0
+ 0090  74 1D				je	done
+ 0092  8A 04				mov	al,[si]
+ 0094  3C 41				cmp	al,"A"
+ 0096  72 0E				jb	skip
+ 0098  3C 5A				cmp	al,"Z"
+ 009A  72 EF				jb	good
+ 009C  3C 61				cmp	al,"a"
+ 009E  72 06				jb	skip
+ 00A0  3C 7A				cmp	al,"z"
+ 00A2  72 E7				jb	good
+ 00A4  EB 00				jmp	skip
+
+ 00A6  46			skip:	inc	si
+ 00A7  49				dec	cx
+ 00A8  83 F9 00				cmp	cx,0
+ 00AB  74 02				je	done
+ 00AD  EB C0				jmp	pta
+
+ 00AF  89 1E 040A R		done:	mov	wds,bx
+ 00B3  C3				ret
+ 00B4				words	ENDP
+				;-----------------------------
+ 00B4				input	PROC
+ 00B4  8D 36 0000 R			lea	si,stri		;this is where i'll write my string into
+ 00B8  8D 3E 040C R			lea	di,imsg1
+ 00BC  9A ---- 0000 E			call	outstr
+ 00C1  9A ---- 0000 E			call	newline
+ 00C6  8D 3E 0420 R			lea	di,imsg2
+ 00CA  9A ---- 0000 E			call	outstr
+ 00CF  9A ---- 0000 E			call	newline
+ 00D4  9A ---- 0000 E			call	newline
+ 00D9  8D 3E 0435 R			lea	di,imsg3
+ 00DD  9A ---- 0000 E			call	outstr
+ 00E2  9A ---- 0000 E			call	newline
+ 00E7  9A ---- 0000 E		inp:	call	getc
+ 00EC  3C 0D				cmp	al,0dh
+ 00EE  74 06				je	next		;this is the break thingy
+ 00F0  88 04				mov	[si],al
+ 00F2  46				inc	si
+ 00F3  41				inc	cx		;my counter
+ 00F4  EB F1				jmp	inp
+ 00F6  89 0E 0400 R		next:	mov	cnt,cx	;saving this value for further usage
+ 00FA  C3				ret
+ 00FB				input	ENDP
+				;------------------------------------
+ 00FB				upper	PROC
+ 00FB  8D 36 0000 R			lea	si,stri		;pointing for eval
+ 00FF  B8 0000			pta:	mov	ax,0
+ 0102  8A 04				mov	al,[si]
+ 0104  3C 41				cmp	al,"A"
+ 0106  72 0E				jb	skip
+ 0108  3C 5A				cmp	al,"Z"
+ 010A  77 0A				ja	skip
+ 010C  43				inc	bx		;this is counting  uppercase chars
+ 010D  49				dec	cx		;counting counting... yeah
+ 010E  83 F9 00				cmp	cx,0
+ 0111  74 0C				je	done
+ 0113  46				inc	si
+ 0114  EB E9				jmp	pta
+ 0116  46			skip:	inc	si
+ 0117  49				dec	cx
+ 0118  83 F9 00				cmp	cx,0
+ 011B  74 02				je	done
+ 011D  EB E0				jmp	pta
+ 011F  89 1E 0402 R		done:	mov	up,bx
+ 0123  C3				ret
+ 0124				upper	ENDP
+				;------------------------------------
+ 0124				lower	PROC
+ 0124  8D 36 0000 R			lea	si,stri		;pointing for eval
+ 0128  8B 0E 0400 R			mov	cx,cnt
+ 012C  BB 0000				mov	bx,0
+ 012F  B8 0000			pta:	mov	ax,0
+ 0132  8A 04				mov	al,[si]
+ 0134  3C 61				cmp	al,"a"
+ 0136  72 0E				jb	skip
+ 0138  3C 7A				cmp	al,"z"
+ 013A  77 0A				ja	skip
+ 013C  43				inc	bx		;this is counting  lowercase chars
+ 013D  49				dec	cx		;counting counting... yeah	
+ 013E  83 F9 00				cmp	cx,0
+ 0141  74 0C				je	done
+ 0143  46				inc	si		;next mem location
+ 0144  EB E9				jmp	pta
+ 0146  46			skip:	inc	si
+ 0147  49				dec	cx
+ 0148  83 F9 00				cmp	cx,0
+ 014B  74 02				je	done
+ 014D  EB E0				jmp	pta
+ 014F  89 1E 0404 R		done:	mov	lowe,bx
+ 0153  C3				ret
+ 0154				lower	ENDP
+				;------------------------------------
+ 0154				number	PROC
+ 0154  8D 36 0000 R			lea	si,stri		;pointing for eval
+ 0158  8B 0E 0400 R			mov	cx,cnt
+ 015C  BB 0000				mov	bx,0
+ 015F  B8 0000			pta:	mov	ax,0
+ 0162  8A 04				mov	al,[si]
+ 0164  3C 30				cmp	al,"0"
+ 0166  72 0E				jb	skip
+ 0168  3C 39				cmp	al,"9"
+ 016A  77 0A				ja	skip
+ 016C  43				inc	bx		;this is counting  numbers
+ 016D  49				dec	cx		;counting counting... yeah	
+ 016E  83 F9 00				cmp	cx,0
+ 0171  74 0C				je	done
+ 0173  46				inc	si		;next mem location
+ 0174  EB E9				jmp	pta
+ 0176  46			skip:	inc	si
+ 0177  49				dec	cx
+ 0178  83 F9 00				cmp	cx,0
+ 017B  74 02				je	done
+ 017D  EB E0				jmp	pta
+ 017F  89 1E 0406 R		done:	mov	nume,bx
+ 0183  C3				ret
+ 0184				number	ENDP
+				;------------------------------------
+ 0184				nonalp	PROC
+ 0184  8D 36 0000 R			lea	si,stri		;pointing for eval
+ 0188  8B 0E 0400 R			mov	cx,cnt
+ 018C  BB 0000				mov	bx,0
+ 018F  B8 0000			pta:	mov	ax,0
+ 0192  8A 04				mov	al,[si]
+ 0194  3C 30				cmp	al,"0"
+ 0196  77 0A				ja	check
+ 0198  46				inc	si
+ 0199  43				inc	bx
+ 019A  49				dec	cx
+ 019B  83 F9 00				cmp	cx,0
+ 019E  74 33				je	done
+ 01A0  EB ED				jmp	pta
+
+ 01A2  3C 39			check:	cmp	al,"9"
+ 01A4  72 24				jb	skip
+ 01A6  3C 41				cmp	al,"A"
+ 01A8  72 16				jb	ok
+ 01AA  3C 5A				cmp	al,"Z"
+ 01AC  72 1C				jb	skip
+ 01AE  3C 61				cmp	al,"a"
+ 01B0  72 0E				jb	ok
+ 01B2  3C 7A				cmp	al,"z"
+ 01B4  72 14				jb	skip
+ 01B6  43				inc	bx
+ 01B7  49				dec	cx
+ 01B8  46				inc	si
+ 01B9  83 F9 00				cmp	cx,0
+ 01BC  74 15				je	done
+ 01BE  EB CF				jmp	pta
+
+ 01C0  49			ok:	dec	cx
+ 01C1  43				inc	bx
+ 01C2  46				inc	si
+ 01C3  83 F9 00				cmp	cx,0
+ 01C6  74 0B				je	done
+ 01C8  EB C5				jmp	pta
+
+
+ 01CA  49			skip:	dec	cx
+ 01CB  46				inc	si
+ 01CC  83 F9 00				cmp	cx,0
+ 01CF  74 02				je	done
+ 01D1  EB BC				jmp	pta
+
+ 01D3  89 1E 0408 R		done:	mov	nonal,bx
+ 01D7  C3				ret
+ 01D8				nonalp	ENDP
+					
+					
+				;--------------------------------
+ 01D8				output	PROC
+ 01D8  8D 3E 044B R			lea	di,omsg1
+ 01DC  9A ---- 0000 E			call	outstr
+ 01E1  9A ---- 0000 E			call	newline
+ 01E6  8D 3E 0000 R			lea	di,stri
+ 01EA  9A ---- 0000 E			call	newline
+				;	call	outstr		I HAVE REMOVED THIS PART OF THE CODE AS IT CAUSED WEIRD VISUAL PROBLEMS
+ 01EF  9A ---- 0000 E			call	newline
+ 01F4  8D 3E 045C R			lea	di,omsg2
+ 01F8  9A ---- 0000 E			call	outstr
+ 01FD  9A ---- 0000 E			call	newline
+ 0202  8D 3E 04E0 R			lea	di,omsg7
+ 0206  9A ---- 0000 E			call	outstr
+ 020B  A1 040A R			mov	ax,wds
+ 020E  9A ---- 0000 E			call	outc
+ 0213  9A ---- 0000 E			call	newline
+ 0218  8D 3E 0467 R			lea	di,omsg3
+ 021C  9A ---- 0000 E			call	outstr
+ 0221  A1 0402 R			mov	ax,up
+ 0224  9A ---- 0000 E			call	outc
+ 0229  9A ---- 0000 E			call	newline
+ 022E  8D 3E 0484 R			lea	di,omsg4
+ 0232  9A ---- 0000 E			call	outstr
+ 0237  A1 0404 R			mov	ax,lowe
+ 023A  9A ---- 0000 E			call	outc
+ 023F  9A ---- 0000 E			call	newline
+ 0244  8D 3E 04A1 R			lea	di,omsg5
+ 0248  9A ---- 0000 E			call	outstr
+ 024D  A1 0406 R			mov	ax,nume
+ 0250  9A ---- 0000 E			call	outc
+ 0255  9A ---- 0000 E			call	newline
+ 025A  8D 3E 04BC R			lea	di,omsg6
+ 025E  9A ---- 0000 E			call	outstr
+ 0263  A1 0408 R			mov	ax,nonal
+ 0266  9A ---- 0000 E			call	outc
+ 026B  9A ---- 0000 E			call	newline
+ 0270  C3				ret
+ 0271				output	ENDP
+
+ 0271				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000  0400 [			stri	db	1024 dup (0)
+        00
+       ]
+ 0400 0000			cnt	dw	0
+ 0402 0000			up	dw	0
+ 0404 0000			lowe	dw	0
+ 0406 0000			nume	dw	0
+ 0408 0000			nonal	dw	0
+ 040A 0000			wds	dw	0
+ 040C 53 74 72 69 6E 67		imsg1	db	"String Analyzer 1.0",04
+       20 41 6E 61 6C 79
+       7A 65 72 20 31 2E
+       30 04
+ 0420 62 79 20 43 61 6C		imsg2	db	"by Calvin O. Ference",04
+       76 69 6E 20 4F 2E
+       20 46 65 72 65 6E
+       63 65 04
+ 0435 45 6E 74 65 72 20		imsg3	db	"Enter a line of input",04
+       61 20 6C 69 6E 65
+       20 6F 66 20 69 6E
+       70 75 74 04
+ 044B 45 6E 74 65 72 65		omsg1	db	"Entered string: ",04
+       64 20 73 74 72 69
+       6E 67 3A 20 04
+ 045C 43 6F 6E 74 61 69		omsg2	db	"Contains: ",04h
+       6E 73 3A 20 04
+ 0467 23 20 6F 66 20 55		omsg3	db	"# of Uppercase characters = ",04
+       70 70 65 72 63 61
+       73 65 20 63 68 61
+       72 61 63 74 65 72
+       73 20 3D 20 04
+ 0484 23 20 6F 66 20 4C		omsg4	db	"# of Lowercase characters = ",04
+       6F 77 65 72 63 61
+       73 65 20 63 68 61
+       72 61 63 74 65 72
+       73 20 3D 20 04
+ 04A1 23 20 6F 66 20 4E		omsg5	db	"# of Numeric characters = ",04
+       75 6D 65 72 69 63
+       20 63 68 61 72 61
+       63 74 65 72 73 20
+       3D 20 04
+ 04BC 23 20 6F 66 20 4E		omsg6	db	"# of Non-alphanumeric characters = ",04
+       6F 6E 2D 61 6C 70
+       68 61 6E 75 6D 65
+       72 69 63 20 63 68
+       61 72 61 63 74 65
+       72 73 20 3D 20 04
+ 04E0 23 20 6F 66 20 57		omsg7	db	"# of Words = ",04
+       6F 72 64 73 20 3D
+       20 04
+ 04EE 44 6F 20 79 6F 75		msg	db	"Do you wish to evalutate another string? (Y or N) >> ",04
+       20 77 69 73 68 20
+       74 6F 20 65 76 61
+       6C 75 74 61 74 65
+       20 61 6E 6F 74 68
+       65 72 20 73 74 72
+       69 6E 67 3F 20 28
+       59 20 6F 72 20 4E
+       29 20 3E 3E 20 04
+ 0524				data	ENDS
+
+ 0000				stak	SEGMENT	STACK
+ 0000  0100 [				dw	256 dup (0)
+        0000
+       ]
+ 0200				stak	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/25/08 17:57:32
+2b.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0271	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0524	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0200	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+conv . . . . . . . . . . . . . .	P Near	 0047	  code	Length= 001A Public
+input  . . . . . . . . . . . . .	P Near	 00B4	  code	Length= 0047 Public
+  inp  . . . . . . . . . . . . .	L Near	 00E7	  code	
+  next . . . . . . . . . . . . .	L Near	 00F6	  code	
+lower  . . . . . . . . . . . . .	P Near	 0124	  code	Length= 0030 Public
+  pta  . . . . . . . . . . . . .	L Near	 012F	  code	
+  skip . . . . . . . . . . . . .	L Near	 0146	  code	
+  done . . . . . . . . . . . . .	L Near	 014F	  code	
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0047 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0011	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0042	  code	
+nonalp . . . . . . . . . . . . .	P Near	 0184	  code	Length= 0054 Public
+  pta  . . . . . . . . . . . . .	L Near	 018F	  code	
+  check  . . . . . . . . . . . .	L Near	 01A2	  code	
+  ok . . . . . . . . . . . . . .	L Near	 01C0	  code	
+  skip . . . . . . . . . . . . .	L Near	 01CA	  code	
+  done . . . . . . . . . . . . .	L Near	 01D3	  code	
+number . . . . . . . . . . . . .	P Near	 0154	  code	Length= 0030 Public
+  pta  . . . . . . . . . . . . .	L Near	 015F	  code	
+  skip . . . . . . . . . . . . .	L Near	 0176	  code	
+  done . . . . . . . . . . . . .	L Near	 017F	  code	
+output . . . . . . . . . . . . .	P Near	 01D8	  code	Length= 0099 Public
+upper  . . . . . . . . . . . . .	P Near	 00FB	  code	Length= 0029 Public
+  pta  . . . . . . . . . . . . .	L Near	 00FF	  code	
+  skip . . . . . . . . . . . . .	L Near	 0116	  code	
+  done . . . . . . . . . . . . .	L Near	 011F	  code	
+words  . . . . . . . . . . . . .	P Near	 0061	  code	Length= 0053 Public
+  pta  . . . . . . . . . . . . .	L Near	 006F	  code	
+  begin  . . . . . . . . . . . .	L Near	 008A	  code	
+  good . . . . . . . . . . . . .	L Near	 008B	  code	
+  skip . . . . . . . . . . . . .	L Near	 00A6	  code	
+  done . . . . . . . . . . . . .	L Near	 00AF	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+cnt  . . . . . . . . . . . . . .	Word	 0400	  data	
+getc . . . . . . . . . . . . . .	L Far	 0000	  External
+imsg1  . . . . . . . . . . . . .	Byte	 040C	  data	
+imsg2  . . . . . . . . . . . . .	Byte	 0420	  data	
+imsg3  . . . . . . . . . . . . .	Byte	 0435	  data	
+lowe . . . . . . . . . . . . . .	Word	 0404	  data	
+msg  . . . . . . . . . . . . . .	Byte	 04EE	  data	
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+nonal  . . . . . . . . . . . . .	Word	 0408	  data	
+nume . . . . . . . . . . . . . .	Word	 0406	  data	
+omsg1  . . . . . . . . . . . . .	Byte	 044B	  data	
+omsg2  . . . . . . . . . . . . .	Byte	 045C	  data	
+omsg3  . . . . . . . . . . . . .	Byte	 0467	  data	
+omsg4  . . . . . . . . . . . . .	Byte	 0484	  data	
+omsg5  . . . . . . . . . . . . .	Byte	 04A1	  data	
+omsg6  . . . . . . . . . . . . .	Byte	 04BC	  data	
+omsg7  . . . . . . . . . . . . .	Byte	 04E0	  data	
+outc . . . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+outword  . . . . . . . . . . . .	L Far	 0000	  External
+stri . . . . . . . . . . . . . .	Byte	 0000	  data	
+up . . . . . . . . . . . . . . .	Word	 0402	  data	
+wds  . . . . . . . . . . . . . .	Word	 040A	  data	
+
+	   0 Warnings
+	   0 Errors

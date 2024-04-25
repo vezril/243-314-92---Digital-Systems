@@ -1,0 +1,132 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 20:55:49
+9_3b.asm						     Page 1 - 1
+
+
+				; PROGRAM: 9_3.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Looping and Indexing Ops
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000				init:	
+ 0000  B8 ---- R			mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  B9 0000				mov	cx,0
+ 000E  BA 0000				mov	dx,0
+ 0011  8D 3E 0000 R			lea	di,mem
+ 0015  8D 36 0028 R			lea	si,mem2
+
+ 0019  83 FF 27			parta:	cmp	di,27h
+ 001C  77 27				ja	partc
+ 001E  8B 05				mov	ax,[di]
+ 0020  3D 04E2				cmp	ax,1250
+ 0023  74 0A				je	thingy
+ 0025  3D 00C8				cmp	ax,200
+ 0028  77 0D				ja	partb
+ 002A  83 C7 02				add	di,2
+ 002D  EB EA				jmp	parta
+
+ 002F  83 C6 02			thingy: add	si,2
+ 0032  83 C7 02				add	di,2
+ 0035  EB E2				jmp	parta
+
+ 0037  8B 1D			partb:	mov	bx,[di]
+ 0039  89 1C				mov	[si],bx
+ 003B  83 C6 02				add	si,2
+ 003E  83 C7 02				add	di,2
+ 0041  FE C1				inc	cl
+ 0043  EB D4				jmp	parta
+
+				
+ 0045  8D 36 0028 R		partc:	lea	si,mem2
+ 0049  B8 0000				mov	ax,0
+				
+ 004C  83 FE 47			partd:	cmp	si,47h
+ 004F  77 0A				ja	avg
+ 0051  03 04				add	ax,[si]
+ 0053  83 D2 00				adc	dx,0
+ 0056  83 C6 02				add	si,2
+ 0059  EB F1				jmp	partd
+
+ 005B  8B D9			avg:	mov	bx,cx
+ 005D  F7 F1				div	cx
+
+
+ 005F  86 E0			shi:	xchg	ah,al
+ 0061  86 F2				xchg	dh,dl
+ 0063  88 0E 004C R			mov	cnt,cl
+ 0067  A3 004A R			mov	rez+2,ax
+ 006A  89 16 0048 R			mov	rez,dx
+ 006E  B8 4C00				mov	ax,4c00h
+ 0071  CD 21				int	21h
+
+ 0073				main	ENDP
+ 0073				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 0064 03B1 04E2 00A7	mem	dw	100,945,1250,167,888,753,951,459,621,741,963,258,147,852,369,200,365,999,440,350
+       0378 02F1 03B7
+       01CB 026D 02E5
+       03C3 0102 0093
+       0354 0171 00C8
+       016D 03E7 01B8
+       015E
+ 0028 0000 0000 0000 0000	mem2	dw	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+       0000 0000 0000
+       0000 0000 0000
+       0000 0000 0000
+       0000 0000 0000
+ 0048 0000 0000			rez	dw	0,0
+ 004C 00			cnt	db	0
+ 004D				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 20:55:49
+9_3b.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0073	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 004D	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0073 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  parta  . . . . . . . . . . . .	L Near	 0019	  code	
+  thingy . . . . . . . . . . . .	L Near	 002F	  code	
+  partb  . . . . . . . . . . . .	L Near	 0037	  code	
+  partc  . . . . . . . . . . . .	L Near	 0045	  code	
+  partd  . . . . . . . . . . . .	L Near	 004C	  code	
+  avg  . . . . . . . . . . . . .	L Near	 005B	  code	
+  shi  . . . . . . . . . . . . .	L Near	 005F	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+cnt  . . . . . . . . . . . . . .	Byte	 004C	  data	
+mem2 . . . . . . . . . . . . . .	Word	 0028	  data	
+mem  . . . . . . . . . . . . . .	Word	 0000	  data	
+rez  . . . . . . . . . . . . . .	Word	 0048	  data	
+
+	   0 Warnings
+	   0 Errors

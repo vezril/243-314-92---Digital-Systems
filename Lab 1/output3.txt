@@ -1,0 +1,60 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+C:\MASM>copy exb1.asm mylab1b.asm
+
+C:\MASM>copy ex1b.asm mylab1b.asm
+
+C:\MASM>ml /c /Fl mylab1b.asm
+
+C:\MASM>link mylab1b.obj,,,,,
+
+C:\MASM>debug mylab1b.exe
+-t
+
+AX=0001  BX=0000  CX=0018  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0003   NV UP EI PL NZ NA PO NC 
+0E3B:0003 83C006        ADD     AX,+06                             
+-t
+
+AX=0007  BX=0000  CX=0018  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0006   NV UP EI PL NZ NA PO NC 
+0E3B:0006 BB0200        MOV     BX,0002                            
+-t
+
+AX=0007  BX=0002  CX=0018  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0009   NV UP EI PL NZ NA PO NC 
+0E3B:0009 03D8          ADD     BX,AX                              
+-t
+
+AX=0007  BX=0009  CX=0018  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=000B   NV UP EI PL NZ NA PE NC 
+0E3B:000B B90400        MOV     CX,0004                            
+-t
+
+AX=0007  BX=0009  CX=0004  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=000E   NV UP EI PL NZ NA PE NC 
+0E3B:000E BA0800        MOV     DX,0008                            
+-t
+
+AX=0007  BX=0009  CX=0004  DX=0008  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0011   NV UP EI PL NZ NA PE NC 
+0E3B:0011 03CA          ADD     CX,DX                              
+-t
+
+AX=0007  BX=0009  CX=000C  DX=0008  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0013   NV UP EI PL NZ NA PE NC 
+0E3B:0013 B8004C        MOV     AX,4C00                            
+-t
+
+AX=4C00  BX=0009  CX=000C  DX=0008  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0016   NV UP EI PL NZ NA PE NC 
+0E3B:0016 CD21          INT     21                                 
+-t
+
+AX=4C00  BX=0009  CX=000C  DX=0008  SP=FFFA  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=05A5  IP=0270   NV UP DI PL NZ NA PE NC 
+05A5:0270 2E            CS:                                        
+05A5:0271 833E050200    CMP     WORD PTR [0205],+00                CS:0205=08B9
+-q
+
+C:\MASM>tcap/u

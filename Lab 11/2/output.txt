@@ -1,0 +1,45 @@
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB11~1\2>2b.exe
+String Analyzer 1.0
+by Calvin O. Ference
+
+Enter a line of input
+Entered string:
+
+
+Contains:
+# of Words = 2
+# of Uppercase characters = 2
+# of Lowercase characters = 8
+# of Numeric characters = 0
+# of Non-alphanumeric characters = 1
+
+Do you wish to evalutate another string? (Y or N) >> YString Analyzer 1.0
+by Calvin O. Ference
+
+Enter a line of input
+Entered string: own with M$
+
+
+Contains:
+# of Words = 6
+# of Uppercase characters = 5
+# of Lowercase characters = C
+# of Numeric characters = 0
+# of Non-alphanumeric characters = 7
+
+Do you wish to evalutate another string? (Y or N) >> YString Analyzer 1.0
+by Calvin O. Ference
+
+Enter a line of input
+Entered string: 7
+
+
+Contains:
+# of Words = 3
+# of Uppercase characters = 6
+# of Lowercase characters = 9
+# of Numeric characters = 5
+# of Non-alphanumeric characters = 4
+
+Do you wish to evalutate another string? (Y or N) >> n
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB11~1\2>

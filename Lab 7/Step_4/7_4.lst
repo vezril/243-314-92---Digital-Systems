@@ -1,0 +1,89 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/22/08 16:28:35
+7_4.asm							     Page 1 - 1
+
+
+				; PROGRAM: 7_1a.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Division program
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8					mov	ds,ax
+ 0005  B8 0000					mov	ax,0
+ 0008  BB 0000					mov	bx,0
+ 000B  B9 0000					mov	cx,0
+ 000E  BA 0000					mov	dx,0 
+
+ 0011  A1 0000 R		multi:	mov	ax,R1
+ 0014  8B 1E 0002 R				mov	bx,R2
+ 0018  F7 E3					mul	bx
+ 001A  89 16 0004 R				mov	save,dx
+ 001E  A3 0006 R				mov	save+2,ax
+						
+ 0021  03 1E 0000 R		additi:	add	bx,R1
+ 0025  83 D1 00					adc	cx,0
+						
+ 0028  A1 0006 R		divisi:	mov	ax,save+2
+ 002B  8B 16 0004 R				mov	dx,save
+ 002F  F7 F3					div	bx
+							
+ 0031  A3 000A R		shi:	mov	rez,ax
+ 0034  B8 4C00					mov	ax,4c00h
+ 0037  CD 21					int	21h
+					
+ 0039				main	ENDP
+ 0039				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 4E20			R1		dw	4E20h
+ 0002 3A98			R2		dw	3A98h
+ 0004 0000 0000 0000		save	dw	0,0,0
+ 000A 0000			rez		dw	0
+ 000C				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    10/22/08 16:28:35
+7_4.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0039	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000C	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0039 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  multi  . . . . . . . . . . . .	L Near	 0011	  code	
+  additi . . . . . . . . . . . .	L Near	 0021	  code	
+  divisi . . . . . . . . . . . .	L Near	 0028	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0031	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+R1 . . . . . . . . . . . . . . .	Word	 0000	  data	
+R2 . . . . . . . . . . . . . . .	Word	 0002	  data	
+rez  . . . . . . . . . . . . . .	Word	 000A	  data	
+save . . . . . . . . . . . . . .	Word	 0004	  data	
+
+	   0 Warnings
+	   0 Errors

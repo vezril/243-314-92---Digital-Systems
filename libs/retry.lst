@@ -1,0 +1,102 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 19:00:29
+retry.asm						     Page 1 - 1
+
+
+				; PROGRAM: retry.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  this external subroutines prompts the user when called if he wants to retry a pgm
+				; 
+				; Version:	1.0	
+				; ENTER CONDITIONS : AX will be used in this application and any data in it will be lost, same with DI
+				; EXIT CONDITIONS  : NONE
+					
+					PUBLIC	retry
+				        ASSUME	cs:code, ds:data
+					EXTRN	outstr:FAR, getc:FAR, newline:FAR
+
+ 0000				code	SEGMENT
+ 0000				retry	PROC	FAR
+ 0000  B8 0000			init:	mov	ax,0
+ 0003  50				push	ax
+ 0004  9A ---- 0000 E		start:	call	newline
+ 0009  8D 3E 0000 R			lea	di,msg1
+ 000D  9A ---- 0000 E			call	outstr
+ 0012  9A ---- 0000 E			call	getc
+ 0017  3C 79				cmp	al,"y"
+ 0019  74 21				je	yes
+ 001B  3C 59				cmp	al,"Y"
+ 001D  74 1D				je	yes
+ 001F  3C 6E				cmp	al,"n"
+ 0021  74 1A				je	no
+ 0023  3C 4E				cmp	al,"N"
+ 0025  74 16				je	no
+ 0027  9A ---- 0000 E			call	newline
+ 002C  8D 3E 0034 R			lea	di,msg2
+ 0030  9A ---- 0000 E			call	outstr
+ 0035  9A ---- 0000 E			call	newline
+ 003A  EB C8				jmp	start
+					
+
+ 003C  CB			yes:	ret
+
+ 003D  B8 4C00			no:	mov	ax,4c00h
+ 0040  CD 21				int	21h
+ 0042				retry	ENDP
+ 0042				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 44 6F 20 79 6F 75		msg1	db	"Do you wish to rerun this application? (Y or N) >> ",04
+       20 77 69 73 68 20
+       74 6F 20 72 65 72
+       75 6E 20 74 68 69
+       73 20 61 70 70 6C
+       69 63 61 74 69 6F
+       6E 3F 20 28 59 20
+       6F 72 20 4E 29 20
+       3E 3E 20 04
+ 0034 43 6F 6D 65 20 61		msg2	db	"Come again?",04
+       67 61 69 6E 3F 04
+ 0040				data	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 19:00:29
+retry.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0042	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0040	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+retry  . . . . . . . . . . . . .	P Far	 0000	  code	Length= 0042 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0004	  code	
+  yes  . . . . . . . . . . . . .	L Near	 003C	  code	
+  no . . . . . . . . . . . . . .	L Near	 003D	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+getc . . . . . . . . . . . . . .	L Far	 0000	  External
+msg1 . . . . . . . . . . . . . .	Byte	 0000	  data	
+msg2 . . . . . . . . . . . . . .	Byte	 0034	  data	
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors

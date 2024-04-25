@@ -1,0 +1,68 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/10/08 14:59:04
+mylab1.asm						     Page 1 - 1
+
+
+				; PROGRAM: EX1.ASM
+				;
+				; AUTHOR: <your_name_here>
+				;
+				; DESCRIPTION:  This program simply initializes the General Purpose
+				; registers with an arbitrary set of values.
+				; 
+
+				        ASSUME	cs:code
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    FAR
+				        
+ 0000				start:
+ 0000  B8 04D2			        mov     ax,1234
+ 0003  BB 1234			        mov     bx,1234h
+ 0006  B9 1234			        mov     cx,0001001000110100b
+ 0009  BA ABCD			        mov     dx,0abcdh
+
+ 000C  B0 00			        mov     al,0
+ 000E  8A E0				mov     ah,al
+ 0010  B7 12			        mov     bh,12h
+ 0012  B3 34			        mov     bl,34h
+ 0014  8A CF			        mov     cl,bh
+ 0016  8A E9				mov     ch,cl
+ 0018  8A D0			        mov     dl,al
+ 001A  8A F3			        mov     dh,bl
+
+ 001C  B8 4C00			fini:   mov	ax,4c00h
+ 001F  CD 21			        int	21h
+
+ 0021				main    ENDP
+ 0021				code    ENDS
+
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    09/10/08 14:59:04
+mylab1.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0021	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Far	 0000	  code	Length= 0021 Public
+  start  . . . . . . . . . . . .	L Near	 0000	  code	
+  fini . . . . . . . . . . . . .	L Near	 001C	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

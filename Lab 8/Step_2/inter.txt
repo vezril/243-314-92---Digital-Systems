@@ -1,0 +1,27 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB8~1\STEP_2>debug 8_2.exe
+-d cs:70
+0E3B:0070  BB 02 00 F7 F3 8B D8 A1-06 00 8B 16 04 00 F7 F3   ................
+0E3B:0080  BB 02 00 F7 F3 EB D4 00-00 00 00 00 00 00 00 00   ................
+0E3B:0090  00 A0 00 A0 00 00 00 00-00 00 00 00 00 73 20 4D   .............s M
+0E3B:00A0  53 2D 44 4F 53 20 65 6E-76 69 72 6F 6E 6D 65 6E   S-DOS environmen
+0E3B:00B0  74 20 76 61 72 69 61 62-6C 65 73 2E 0D 0A 0D 0A   t variables.....
+0E3B:00C0  53 45 54 20 5B 76 61 72-69 61 62 6C 65 3D 5B 73   SET [variable=[s
+0E3B:00D0  74 72 69 6E 67 5D 5D 0D-0A 0D 0A 81 20 20 76 61   tring]].....  va
+0E3B:00E0  72 69 61 62 6C 65 20 20-53 70 65 63 69 66 69 65   riable  Specifie
+-g
+
+Program terminated normally
+-d cs:70
+0E3B:0070  BB 02 00 F7 F3 8B D8 A1-06 00 8B 16 04 00 F7 F3   ................
+0E3B:0080  BB 02 00 F7 F3 EB D4 00-00 00 00 00 00 00 00 00   ................
+0E3B:0090  00 A0 00 A0 00 64 00 00-00 00 50 00 00 73 20 4D   .....d....P..s M
+0E3B:00A0  53 2D 44 4F 53 20 65 6E-76 69 72 6F 6E 6D 65 6E   S-DOS environmen
+0E3B:00B0  74 20 76 61 72 69 61 62-6C 65 73 2E 0D 0A 0D 0A   t variables.....
+0E3B:00C0  53 45 54 20 5B 76 61 72-69 61 62 6C 65 3D 5B 73   SET [variable=[s
+0E3B:00D0  74 72 69 6E 67 5D 5D 0D-0A 0D 0A 81 20 20 76 61   tring]].....  va
+0E3B:00E0  72 69 61 62 6C 65 20 20-53 70 65 63 69 66 69 65   riable  Specifie
+-q
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB8~1\STEP_2>tcap/u

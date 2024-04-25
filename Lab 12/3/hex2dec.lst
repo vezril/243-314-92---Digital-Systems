@@ -1,0 +1,78 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 13:58:30
+hex2dec.asm						     Page 1 - 1
+
+
+				; PROGRAM: hex2dec.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Hexadicaml (one byte) to decimal converter
+				; 
+				; Version:	3.2	
+				; ENTER CONDITIONS : hex value to convert needs to be in al
+				; EXIT CONDITIONS  : the result will appear in ax
+					
+					PUBLIC	hex2dec
+				        ASSUME	cs:code
+
+ 0000				code	SEGMENT
+ 0000				hex2dec	PROC	FAR
+ 0000  53			init:	push	bx
+ 0001  51				push	cx
+ 0002  52				push	dx
+ 0003  B4 00				mov	ah,0
+ 0005  BA 0000				mov	dx,0
+ 0008  B9 0000				mov	cx,0
+
+ 000B  BB 0064			start:	mov	bx,100
+ 000E  F6 F3				div	bl
+ 0010  8A E8				mov	ch,al
+ 0012  B0 00				mov	al,0
+ 0014  86 E0				xchg	ah,al
+ 0016  B3 0A				mov	bl,10
+ 0018  F6 F3				div	bl
+ 001A  8A CC				mov	cl,ah	;moving my remainder out of the way
+ 001C  B4 00				mov	ah,0
+ 001E  B3 10				mov	bl,16
+ 0020  F6 E3				mul	bl
+ 0022  02 C8				add	cl,al
+ 0024  8B C1				mov	ax,cx	
+ 0026  5A				pop	dx
+ 0027  59				pop	cx
+ 0028  5B				pop	bx
+ 0029  CB				ret
+ 002A				hex2dec	ENDP
+ 002A				code	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 13:58:30
+hex2dec.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 002A	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+hex2dec  . . . . . . . . . . . .	P Far	 0000	  code	Length= 002A Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 000B	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

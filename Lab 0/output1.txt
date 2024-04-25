@@ -1,0 +1,5 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+C:\MASM>ml /c /Fl nulab0.asm
+
+C:\MASM>tcap/u

@@ -1,0 +1,86 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/11/08 17:26:37
+9_1test.asm						     Page 1 - 1
+
+
+				; PROGRAM: 9_1.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Looping and Indexing Ops
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  B9 0044				mov	cx,0044h
+ 000E  BA 0000				mov	dx,0
+
+ 0011  83 F9 64			stepa:	cmp	cx,64h	;random value
+ 0014  77 1C				ja	shi
+ 0016  03 C1				add	ax,cx
+ 0018  83 D2 00				adc	dx,0
+ 001B  83 C1 02				add	cx,2
+ 001E  83 D3 00				adc	bx,0
+ 0021  EB EE				jmp	stepa
+					
+ 0023  81 F9 0875		stepb:	cmp	cx,875h
+ 0027  73 09				jae	shi
+ 0029  03 C1				add	ax,cx
+ 002B  13 D3				adc	dx,bx
+ 002D  83 C1 02				add	cx,2
+ 0030  EB F1				jmp	stepb
+								
+ 0032				shi:	
+ 0032  A3 0002 R			mov	rez+2,ax
+ 0035  89 16 0000 R			mov	rez,dx
+ 0039  B8 4C00				mov	ax,4c00h
+ 003C  CD 21				int	21h
+
+ 003E				main	ENDP
+ 003E				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 0000 0000			rez	dw	0,0
+ 0004				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/11/08 17:26:37
+9_1test.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 003E	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0004	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 003E Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  stepa  . . . . . . . . . . . .	L Near	 0011	  code	
+  stepb  . . . . . . . . . . . .	L Near	 0023	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0032	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+rez  . . . . . . . . . . . . . .	Word	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,94 @@
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 16:22:23
+test4.asm						     Page 1 - 1
+
+
+				;---------------------------
+				;Author:        Calvin O. Ference
+				;description:   parallel test pgm
+				;pgm name:      ptest2.asm
+				;Version 4.0
+				;---------------------------
+
+				        ASSUME  cs:code, ss:stak
+ = 0378				        LPT     equ     378h
+
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000  B8 0000			init:   mov     ax,0
+ 0003  BA 0000			        mov     dx,0
+ 0006  B9 0000			        mov     cx,0
+
+ 0009  BA 0378			a:	mov	dx,LPT
+ 000C  B0 D0				mov	al,0d0h
+ 000E  EE				out	dx,al
+ 000F  E8 0014				call	delay
+ 0012  B0 AC				mov	al,0ach
+ 0014  EE				out	dx,al
+ 0015  E8 000E				call	delay
+ 0018  B0 2A				mov	al,2ah
+ 001A  EE				out	dx,al
+ 001B  E8 0008				call	delay
+ 001E  B0 41				mov	al,41h
+ 0020  EE				out	dx,al
+ 0021  E8 0002				call	delay
+ 0024  EB E3				jmp	a
+ 0026				main    ENDP
+
+
+ 0026				delay   PROC
+ 0026  B9 0000			        mov	cx,0
+ 0029  BB 0000			d0:	mov     bx,0
+ 002C  90			d1:     nop
+ 002D  90			        nop
+ 002E  83 C3 01			        add     bx,1
+ 0031  83 FB FF			        cmp     bx,0ffffh
+ 0034  72 F6			        jb      d1
+ 0036  83 C1 01				add	cx,1
+ 0039  83 F9 14				cmp	cx,20
+ 003C  72 EB				jb	d0
+ 003E  C3			        ret
+ 003F				delay   ENDP
+
+ 003F				code    ENDS
+
+ 0000				stak	SEGMENT	stack
+ 0000  0400 [				db	1024 dup (0)
+        00
+       ]
+ 0400				stak	ENDS
+				        END
+
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 16:22:23
+test4.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 003F	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0400	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+delay  . . . . . . . . . . . . .	P Near	 0026	  code	Length= 0019 Public
+  d0 . . . . . . . . . . . . . .	L Near	 0029	  code	
+  d1 . . . . . . . . . . . . . .	L Near	 002C	  code	
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0026 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  a  . . . . . . . . . . . . . .	L Near	 0009	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+LPT  . . . . . . . . . . . . . .	Number	 0378h	 
+
+	   0 Warnings
+	   0 Errors

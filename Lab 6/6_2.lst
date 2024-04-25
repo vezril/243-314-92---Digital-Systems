@@ -1,0 +1,119 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/20/08 17:42:02
+6_2.asm							     Page 1 - 1
+
+
+				; PROGRAM: 6_1a.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Multiplication program
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8					mov	ds,ax
+						
+ 0005  A1 0002 R		start:	mov ax,vara+2
+ 0008  8B 1E 0006 R				mov	bx,varb+2
+ 000C  F7 E3					mul bx
+ 000E  A3 000E R				mov	rez+6,ax
+ 0011  8B CA					mov	cx,dx
+ 0013  A1 0000 R				mov	ax,vara
+ 0016  F7 E3					mul	bx
+ 0018  A3 0016 R				mov	save+6,ax
+ 001B  89 16 0014 R				mov	save+4,dx
+						
+ 001F  A1 0002 R		part2:	mov	ax,vara+2
+ 0022  8B 1E 0006 R				mov	bx,varb+2
+ 0026  F7 E3					mul	bx
+ 0028  89 16 0012 R				mov	save+2,dx
+ 002C  03 C8					add	cx,ax
+ 002E  83 16 0016 R 00				adc	save+6,0
+ 0033  83 16 0014 R 00				adc	save+4,0
+ 0038  89 0E 000C R				mov	rez+4,cx
+ 003C  A1 0000 R				mov	ax,vara
+ 003F  F7 E3					mul	bx
+ 0041  8B 0E 0012 R				mov cx,save+2
+ 0045  BB 0000					mov	bx,0
+ 0048  8A D9					mov	bl,cl
+ 004A  8A F8					mov	bh,al
+ 004C  03 1E 0016 R				add	bx,save+6
+ 0050  83 16 0014 R 00				adc save+4,0
+ 0055  89 1E 000A R				mov	rez+2,bx
+ 0059  8A DC					mov	bl,ah
+ 005B  8A FA					mov	bh,dl
+ 005D  03 1E 0014 R				add	bx,save+4
+ 0061  89 1E 0008 R				mov	rez,bx	
+
+ 0065  A1 0008 R		bigend:	mov ax,rez
+ 0068  8A F8					mov	bh,al
+ 006A  8A DC					mov	bl,ah
+ 006C  89 1E 0008 R				mov	rez,bx
+ 0070  A1 000A R				mov ax,rez+2
+ 0073  8A F8					mov	bh,al
+ 0075  8A DC					mov	bl,ah
+ 0077  89 1E 000A R				mov	rez+2,bx
+ 007B  A1 000C R				mov ax,rez+4
+ 007E  8A F8					mov	bh,al
+ 0080  8A DC					mov	bl,ah
+ 0082  89 1E 000C R				mov	rez+4,bx
+ 0086  A1 000E R				mov ax,rez+6
+ 0089  8A F8					mov	bh,al
+ 008B  8A DC					mov	bl,ah
+ 008D  89 1E 000E R				mov	rez+6,bx
+						
+ 0091  B8 4C00			shi:	mov	ax,4c00h
+ 0094  CD 21					int	21h
+ 0096				main	ENDP
+ 0096				code	ENDS
+						
+						
+ 0000				data	SEGMENT
+ 0000 FFFF FFFF			vara	dw	0ffffh,0ffffh
+ 0004 00FF FFFF			varb	dw	00ffh,0ffffh
+ 0008 0000 0000 0000 0000	rez		dw	0,0,0,0
+ 0010 0000 0000 0000 0000	save	dw	0,0,0,0
+ 0018				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    10/20/08 17:42:02
+6_2.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0096	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0018	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0096 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  part2  . . . . . . . . . . . .	L Near	 001F	  code	
+  bigend . . . . . . . . . . . .	L Near	 0065	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0091	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+rez  . . . . . . . . . . . . . .	Word	 0008	  data	
+save . . . . . . . . . . . . . .	Word	 0010	  data	
+vara . . . . . . . . . . . . . .	Word	 0000	  data	
+varb . . . . . . . . . . . . . .	Word	 0004	  data	
+
+	   0 Warnings
+	   0 Errors

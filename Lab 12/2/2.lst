@@ -1,0 +1,136 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 18:49:07
+2.asm							     Page 1 - 1
+
+
+				; PROGRAM: 2.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Bit CNT using EXTRN Sbr
+				; 
+				; Version:	1.0
+
+				        ASSUME	cs:code, ds:data, ss:stak
+					EXTRN	outstr:FAR, getbyte:FAR, getword:FAR, outbyte:FAR, outword:FAR, newline:FAR
+					EXTRN	getc:FAR, nibadd:FAR
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  B9 0020				mov	cx,32		;setting my counter
+ 000B  8D 3E 0000 R			lea	di,buff
+
+ 000F				start:	
+ 000F  9A ---- 0000 E			call	nibadd
+ 0014  00 06 0082 R			add	csum+2,al	;adds the results directly into memory
+ 0018  80 16 0080 R 00			adc	csum,0		;with a carry if needed
+ 001D  49				dec	cx		;decrementing the counter
+ 001E  83 F9 00				cmp	cx,0		;and checking it if it's done
+ 0021  74 05				je	part2		;if so then go to the end
+ 0023  83 C7 02				add	di,2
+ 0026  EB E7				jmp	start
+
+ 0028  8D 3E 0040 R		part2:	lea	di,buff2
+ 002C  B9 0020				mov	cx,32
+ 002F  9A ---- 0000 E		s2:	call	nibadd
+ 0034  00 06 0082 R			add	csum+2,al
+ 0038  80 16 0080 R 00			adc	csum,0
+ 003D  49				dec	cx
+ 003E  83 F9 00				cmp	cx,0
+ 0041  74 05				je	done
+ 0043  83 C7 02				add	di,2
+ 0046  EB E7				jmp	s2
+
+ 0048  A0 0080 R		done:	mov	al,csum
+ 004B  9A ---- 0000 E			call	outbyte
+ 0050  A0 0082 R			mov	al,csum+2
+ 0053  9A ---- 0000 E			call	outbyte		
+
+ 0058  B8 4C00			shi:	mov	ax,4c00h
+ 005B  CD 21				int	21h
+ 005D				main	ENDP
+ 005D				code	ENDS
+
+					
+ 0000				data	SEGMENT
+ 0000 1234 5678 9874 DEAD	buff	dw	1234h,5678h,9874h,0deadh,0abcdh,0dcabh,0fa56h,9635h,7412h,7139h,9431h,5678h,1295h,8528h,1111h,2222h,3333h,4444h,5555h,6666h,7777h,8888h,9999h,0aaaah,0bbbbh,0cccch,0ddddh,0eeeeh,0ffffh,9875h,9514h,0894h
+       ABCD DCAB FA56
+       9635 7412 7139
+       9431 5678 1295
+       8528 1111 2222
+       3333 4444 5555
+       6666 7777 8888
+       9999 AAAA BBBB
+       CCCC DDDD EEEE
+       FFFF 9875 9514
+       0894
+ 0040 7890 3596 FBAC DDDE	buff2	dw	7890h,3596h,0fbach,0dddeh,0fffdh,0aaach,6545h,0258h,8645h,9634h,1238h,3574h,9582h,0025h,8500h,0de00h,0adeh,0ab00h,8434h,5adeh,0cdeah,5413h,0f00fh,4784h,0fdeah,9874h,1238h,258ah,0aabbh,0ccddh,0ffddh,0bbcch
+       FFFD AAAC 6545
+       0258 8645 9634
+       1238 3574 9582
+       0025 8500 DE00
+       0ADE AB00 8434
+       5ADE CDEA 5413
+       F00F 4784 FDEA
+       9874 1238 258A
+       AABB CCDD FFDD
+       BBCC
+ 0080 00 00			csum	db	0,0
+ 0082				data	ENDS
+
+
+ 0000				stak	SEGMENT	STACK
+ 0000  0400 [				dw	1024 dup (0)
+        0000
+       ]
+ 0800				stak	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 18:49:07
+2.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 005D	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0082	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0800	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 005D Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 000F	  code	
+  part2  . . . . . . . . . . . .	L Near	 0028	  code	
+  s2 . . . . . . . . . . . . . .	L Near	 002F	  code	
+  done . . . . . . . . . . . . .	L Near	 0048	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0058	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+buff2  . . . . . . . . . . . . .	Word	 0040	  data	
+buff . . . . . . . . . . . . . .	Word	 0000	  data	
+csum . . . . . . . . . . . . . .	Byte	 0080	  data	
+getbyte  . . . . . . . . . . . .	L Far	 0000	  External
+getc . . . . . . . . . . . . . .	L Far	 0000	  External
+getword  . . . . . . . . . . . .	L Far	 0000	  External
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+nibadd . . . . . . . . . . . . .	L Far	 0000	  External
+outbyte  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+outword  . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors

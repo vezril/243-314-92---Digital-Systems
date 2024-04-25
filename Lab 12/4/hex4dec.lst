@@ -1,0 +1,96 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 16:43:50
+hex4dec.asm						     Page 1 - 1
+
+
+				; PROGRAM: hex4dec.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Hexadicaml (one byte) to decimal converter
+				; 
+				; Version:	1.0	
+				; ENTER CONDITIONS : hex value to convert needs to be in ax
+				; EXIT CONDITIONS  : the result will appear in ax and dx
+					
+					PUBLIC	hex4dec
+				        ASSUME	cs:code
+
+ 0000				code	SEGMENT
+ 0000				hex4dec	PROC	FAR
+ 0000  53			init:	push	bx
+ 0001  51				push	cx
+ 0002  BA 0000				mov	dx,0
+ 0005  B9 0000				mov	cx,0
+
+ 0008  BB 03E8			start:	mov	bx,1000
+ 000B  F7 F3				div	bx
+ 000D  BB 000A				mov	bx,10
+ 0010  F6 F3				div	bl
+ 0012  8A CC				mov	cl,ah
+ 0014  B4 00				mov	ah,0
+ 0016  50				push	ax		;this is my 10^4 i'l grab him later when i'm done
+ 0017  B8 0000				mov	ax,0
+ 001A  8A E1				mov	ah,cl
+ 001C  BB 0010				mov	bx,10h
+ 001F  52				push	dx
+ 0020  F7 E3				mul	bx
+ 0022  8B C8				mov	cx,ax
+ 0024  58				pop	ax
+ 0025  BB 0064				mov	bx,100
+ 0028  F6 F3				div	bl
+ 002A  8B D0				mov	dx,ax
+ 002C  83 E0 0F				and	ax,000fh
+ 002F  81 E2 FF00			and	dx,0ff00h
+ 0033  BB 0100				mov	bx,100h
+ 0036  52				push	dx
+ 0037  F7 E3				mul	bx
+ 0039  03 C8				add	cx,ax
+ 003B  B8 0000				mov	ax,0
+ 003E  5A				pop	dx
+ 003F  8A C6				mov	al,dh
+ 0041  BB 000A				mov	bx,10
+ 0044  F6 F3				div	bl
+ 0046  02 CC				add	cl,ah
+ 0048  83 E0 0F				and	ax,000fh
+ 004B  BB 0010				mov	bx,10h
+ 004E  F7 E3				mul	bx
+ 0050  03 C1				add	ax,cx
+ 0052  5A				pop	dx
+ 0053  59				pop	cx
+ 0054  5B				pop	bx
+ 0055  CB				ret
+ 0056				hex4dec	ENDP
+ 0056				code	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/29/08 16:43:50
+hex4dec.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0056	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+hex4dec  . . . . . . . . . . . .	P Far	 0000	  code	Length= 0056 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0008	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

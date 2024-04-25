@@ -1,0 +1,35 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+G:\USB\ELECTR~1\SEMEST~1\243-31~1\LAB6~1>debug 6_1a.exe
+-r
+AX=0000  BX=0000  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0000   NV UP EI PL NZ NA PO NC 
+0E3B:0000 B005          MOV     AL,05                              
+-t
+
+AX=0005  BX=0000  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0002   NV UP EI PL NZ NA PO NC 
+0E3B:0002 B307          MOV     BL,07                              
+-t
+
+AX=0005  BX=0007  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0004   NV UP EI PL NZ NA PO NC 
+0E3B:0004 F6E3          MUL     BL                                 
+-t
+
+AX=0023  BX=0007  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0006   NV UP EI PL NZ NA PO NC 
+0E3B:0006 0401          ADD     AL,01                              
+-t
+
+AX=0024  BX=0007  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=0008   NV UP EI PL NZ NA PE NC 
+0E3B:0008 B8004C        MOV     AX,4C00                            
+-t
+
+AX=4C00  BX=0007  CX=000D  DX=0000  SP=0000  BP=0000  SI=0000  DI=0000  
+DS=0E2B  ES=0E2B  SS=0E3B  CS=0E3B  IP=000B   NV UP EI PL NZ NA PE NC 
+0E3B:000B CD21          INT     21                                 
+-q
+
+G:\USB\ELECTR~1\SEMEST~1\243-31~1\LAB6~1>tcap/u

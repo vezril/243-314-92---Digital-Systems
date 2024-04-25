@@ -1,0 +1,131 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/30/08 18:12:59
+s.asm							     Page 1 - 1
+
+
+				;=============================================================================
+				; PROGRAM: LAB3B.ASM
+				;
+				; DESCRIPTION: A program which demonstrates the manipulation of data variables
+				; in memory
+				;
+				; AUTHOR: Cahvin Ouellet-Ference
+				;=============================================================================
+
+				        Assume cs:code, ds:data
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000				init:
+ 0000  B8 ---- R		        mov     ax,data ;beinging instructions
+ 0003  8E D8			        mov     ds,ax   ;data segment
+
+ 0005				start:
+ 0005  8A 26 0004 R			mov	ah,byte1
+ 0009  A0 0005 R			mov	al,byte2
+ 000C  8A 3E 0006 R			mov	bh,byte3
+ 0010  88 3E 0012 R			mov	byte4+1,bh
+ 0014  A2 0013 R			mov	byte4+2,al
+ 0017  88 26 0014 R			mov	byte4+3,ah
+ 001B  A1 0002 R			mov	ax,word2
+ 001E  A2 0015 R			mov	byte4+4,al
+ 0021  88 26 0016 R			mov	byte4+5,ah
+ 0025  A1 0009 R			mov	ax,word4
+ 0028  A2 0017 R			mov	byte4+6,al
+ 002B  88 26 0018 R			mov	byte4+7,ah
+ 002F  A1 0007 R			mov	ax,word3
+ 0032  A2 0019 R			mov	byte4+8,al
+ 0035  88 26 001A R			mov	byte4+9,ah
+ 0039  A1 000F R			mov	ax,word5
+ 003C  A2 001B R			mov	byte4+10,al
+ 003F  88 26 001C R			mov	byte4+11,ah
+ 0043  8A 26 000B R			mov	ah,bytes+0
+ 0047  A0 000C R			mov	al,bytes+1
+ 004A  8A 3E 000D R			mov	bh,bytes+2
+ 004E  8A 1E 000E R			mov	bl,bytes+3
+ 0052  88 26 001D R			mov	byte4+12,ah
+ 0056  A2 001E R			mov	byte4+13,al
+ 0059  88 3E 001F R			mov	byte4+14,bh
+ 005D  88 1E 0020 R			mov	byte4+15,bl
+ 0061  8A 26 0011 R			mov	ah,byte4
+ 0065  88 26 0021 R			mov	byte4+16,ah	
+
+				        
+ 0069				back2dos:
+
+ 0069  B8 4C00			        mov     ax,4c00h
+ 006C  CD 21			        int     21h
+
+ 006E				main    ENDP
+ 006E				code    ENDS
+				;
+				; Data Section below
+				;
+				;
+				;
+				;
+
+ 0000				data    SEGMENT
+ 0000 9999			word1   DW      9999h   ;marker
+ 0002 BBAA			word2	DW	0bbaah
+ 0004 92			byte1	DB	92h
+ 0005 87			byte2	DB	87h
+ 0006 62			byte3	DB	62h
+ 0007 5539			word3	DW	5539h
+ 0009 4ED2			word4	DW	4ed2h
+ 000B 7F 13 00 66		bytes	DB	7fh,13h,0h,66h 	
+ 000F EE22			word5	DW	0ee22h
+ 0011 88			byte4	DB	88h
+ 0012  0003 [				DB	3 DUP (0)
+        00
+       ]
+ 0015  0004 [				DW	4 DUP (0)
+        0000
+       ]
+ 001D  0005 [				DB	5 DUP (0)
+        00
+       ]
+
+ 0022				data    ENDS
+
+				        END
+
+Microsoft (R) Macro Assembler Version 6.11d		    09/30/08 18:12:59
+s.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 006E	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0022	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 006E Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  back2dos . . . . . . . . . . .	L Near	 0069	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+byte1  . . . . . . . . . . . . .	Byte	 0004	  data	
+byte2  . . . . . . . . . . . . .	Byte	 0005	  data	
+byte3  . . . . . . . . . . . . .	Byte	 0006	  data	
+byte4  . . . . . . . . . . . . .	Byte	 0011	  data	
+bytes  . . . . . . . . . . . . .	Byte	 000B	  data	
+word1  . . . . . . . . . . . . .	Word	 0000	  data	
+word2  . . . . . . . . . . . . .	Word	 0002	  data	
+word3  . . . . . . . . . . . . .	Word	 0007	  data	
+word4  . . . . . . . . . . . . .	Word	 0009	  data	
+word5  . . . . . . . . . . . . .	Word	 000F	  data	
+
+	   0 Warnings
+	   0 Errors

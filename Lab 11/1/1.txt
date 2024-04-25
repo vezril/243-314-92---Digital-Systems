@@ -1,0 +1,187 @@
+2.3 Results
+
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB11~1\1>1.exe
+Range of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00001111
+Input Value B >> 1111
+Input Value C >> 60
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00001111
+Inputed Value for B >> 1111
+Inputed Value for C >> 60
+Error Flag >> 00
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 0000DEAD
+Input Value B >> 1111
+Input Value C >> 60
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 0000DEAD
+Inputed Value for B >> 1111
+Inputed Value for C >> 60
+Error Flag >> 01
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00061111
+Input Value B >> 1111
+Input Value C >> 60
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00061111
+Inputed Value for B >> 1111
+Inputed Value for C >> 60
+Error Flag >> 01
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00001111
+Input Value B >> 7000
+Input Value C >> 60
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00001111
+Inputed Value for B >> 7000
+Inputed Value for C >> 60
+Error Flag >> 02
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00001111
+Input Value B >> 1111
+Input Value C >> 70
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00001111
+Inputed Value for B >> 1111
+Inputed Value for C >> 70
+Error Flag >> 04
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00061111
+Input Value B >> 7000
+Input Value C >> 60
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00061111
+Inputed Value for B >> 7000
+Inputed Value for C >> 60
+Error Flag >> 0A
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00061111
+Input Value B >> 1111
+Input Value C >> 70
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00061111
+Inputed Value for B >> 1111
+Inputed Value for C >> 70
+Error Flag >> 0B
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00001111
+Input Value B >> 7000
+Input Value C >> 70
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00001111
+Inputed Value for B >> 7000
+Inputed Value for C >> 70
+Error Flag >> 0C
+
+Do you wish to evaluate some values again? (Y or N) >> YRange of A is, 0000 09C4h to 0002 AB98h unsigned
+Range of B is, 00C8 to 61A8 unsigned
+Range of A is, E0 to 63 Signed
+
+Input Value A >> 00060000
+Input Value B >> 7000
+Input Value C >> 70
+///EFLAG LEGEND\\\
+01, A is out of Range
+02, B is out of Range
+04, C is out of Range
+0A, A and B are out of Range
+0B, A and C are out of Range
+0C, B and C are out of Range
+FF, all are out of Range
+Inputed Value for A >> 00060000
+Inputed Value for B >> 7000
+Inputed Value for C >> 70
+Error Flag >> FF
+
+Do you wish to evaluate some values again? (Y or N) >> N
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB11~1\1>tcap/u

@@ -1,0 +1,65 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/17/08 15:35:44
+mylab2C.asm						     Page 1 - 1
+
+
+				; PROGRAM: mylab2C.ASM
+				;
+				; AUTHOR:  Calvin O. Ference
+				;
+				; DESCRIPTION:  This program adds certain HEX values to
+				;               the general registers, then moves them around.
+
+
+				        ASSUME	cs:code
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    FAR
+ 0000				hajime:
+ 0000  B8 FD8E			        mov     ax,0FD8Eh
+ 0003  BB 9666			        mov     bx,9666h
+ 0006  B9 A5AA			        mov     cx,0A5AAh
+ 0009  BA 189B			        mov     dx,189Bh
+ 000C				kaze:
+ 000C  8A E8			        mov     ch,al
+ 000E  8A C2			        mov     al,dl
+ 0010  8A D1			        mov     dl,cl
+ 0012  8A CF			        mov     cl,bh
+ 0014  8A FA			        mov     bh,dl
+ 0016				shi:
+ 0016  B8 4C00			        mov     ax,4C00h
+ 0019  CD 21			        int     21h
+
+ 001B				main    ENDP
+ 001B				code    ENDS
+
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    09/17/08 15:35:44
+mylab2C.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 001B	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Far	 0000	  code	Length= 001B Public
+  hajime . . . . . . . . . . . .	L Near	 0000	  code	
+  kaze . . . . . . . . . . . . .	L Near	 000C	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0016	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

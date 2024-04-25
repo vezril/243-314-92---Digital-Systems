@@ -1,0 +1,92 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/26/08 16:28:58
+bitcnt.asm						     Page 1 - 1
+
+
+				; PROGRAM: bitcnt.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Bit Counter
+				; 
+				; Version:	1.0	
+					
+					PUBLIC	bitcnt
+				        ASSUME	cs:code
+
+ 0000				code	SEGMENT
+ 0000				bitcnt	PROC	FAR
+ 0000  53			init:	push	bx
+ 0001  51				push	cx	;gonna use this for my counter
+ 0002  B1 0F				mov	cl,15
+ 0004  8B D8				mov	bx,ax
+
+ 0006  83 E3 01			start: 	and	bx,1
+ 0009  83 FB 01				cmp	bx,1	;evals if there's a 1 or not
+ 000C  74 0B				je	yup
+ 000E  D1 C3				rol	bx,1
+ 0010  FE C9				dec	cl	;this is the loop cnt
+ 0012  80 F9 00				cmp	cl,0
+ 0015  74 0F				je	next
+ 0017  EB ED				jmp	start
+					
+
+ 0019  FE C5			yup:	inc	ch	;this is my 1 cnt
+ 001B  D1 C3				rol	bx,1	;rdy's for the next eval
+ 001D  FE C9				dec	cl
+ 001F  80 F9 00				cmp	cl,0	;checks if the loop is done
+ 0022  74 02				je	next
+ 0024  EB E0				jmp	start
+
+ 0026  80 F9 08			next:	cmp	cl,8
+ 0029  73 02				jae	ones
+ 002B  EB 05				jmp	zeros
+
+ 002D  0D 8000			ones:	or	ax,8000h
+ 0030  EB 05				jmp	done
+
+ 0032  25 7FFF			zeros:	and	ax,7FFFh
+ 0035  EB 00				jmp	done
+
+ 0037  59			done:	pop	cx
+ 0038  5B				pop	bx
+ 0039  CB				ret
+ 003A				bitcnt	ENDP
+ 003A				code	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/26/08 16:28:58
+bitcnt.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 003A	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+bitcnt . . . . . . . . . . . . .	P Far	 0000	  code	Length= 003A Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0006	  code	
+  yup  . . . . . . . . . . . . .	L Near	 0019	  code	
+  next . . . . . . . . . . . . .	L Near	 0026	  code	
+  ones . . . . . . . . . . . . .	L Near	 002D	  code	
+  zeros  . . . . . . . . . . . .	L Near	 0032	  code	
+  done . . . . . . . . . . . . .	L Near	 0037	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

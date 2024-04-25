@@ -1,0 +1,129 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/02/08 12:13:56
+8_3.asm							     Page 1 - 1
+
+
+				; PROGRAM: 8_2.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Parallel Resistance Calculator Program
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:		mov	ax,data
+ 0003  8E D8					mov	ds,ax
+ 0005  C6 06 0007 R 00				mov	eflag,0		;resetting everything 
+
+ 000A  83 3E 0000 R 02		ahigh:		cmp	vara,02
+ 000F  77 35					ja	errora
+ 0011  81 3E 0002 R AB98			cmp	vara+2,0ab98h
+ 0017  77 2D					ja	errora
+ 0019  81 3E 0002 R 09C4	alow:		cmp	vara+2,09c4h
+ 001F  72 25					jb	errora
+ 0021  EB 00					jmp	bhigh
+
+
+ 0023  81 3E 0004 R 61A8	bhigh:		cmp	varb,61a8h
+ 0029  77 22					ja	errorb
+ 002B  81 3E 0004 R 00C8	blow:		cmp	varb,0c8h
+ 0031  72 1A					jb	errorb
+
+ 0033  80 3E 0006 R 7F		chigh:		cmp	varc,7fh
+ 0038  7F 28					jg	errorc
+ 003A  80 3E 0006 R E0		clow:		cmp	varc,-32
+ 003F  7C 21					jl	errorc
+ 0041  B8 4C00			shi:		mov	ax,4c00h
+ 0044  CD 21					int	21h
+
+ 0046  C6 06 0007 R 01		errora:		mov	eflag,01
+ 004B  EB D6					jmp	bhigh
+
+ 004D  80 3E 0007 R 01		errorb:		cmp	eflag,01
+ 0052  74 07					je	errorb2
+ 0054  C6 06 0007 R 02				mov	eflag,02
+ 0059  EB D8					jmp	chigh
+
+ 005B  C6 06 0007 R 0A		errorb2:	mov	eflag,0Ah
+ 0060  EB D1					jmp	chigh
+
+ 0062  80 3E 0007 R 01		errorc:		cmp	eflag,01
+ 0067  74 15					je	errorc2
+ 0069  80 3E 0007 R 02				cmp	eflag,02
+ 006E  74 15					je	errorc3
+ 0070  80 3E 0007 R 0A				cmp	eflag,0ah
+ 0075  74 15					je	errorc4
+ 0077  C6 06 0007 R 04				mov	eflag,04
+ 007C  EB C3					jmp	shi
+					
+ 007E  C6 06 0007 R 0B		errorc2:	mov	eflag,0bh
+ 0083  EB BC					jmp	shi
+						
+ 0085  C6 06 0007 R 0C		errorc3:	mov	eflag,0ch
+ 008A  EB B5					jmp	shi	
+					
+ 008C  C6 06 0007 R FF		errorc4:	mov	eflag,0ffh
+ 0091  EB AE					jmp	shi
+
+ 0093				main	ENDP
+ 0093				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 0002 AB98			vara	dw	2,0ab98h
+ 0004 61A8			varb	dw	61a8h
+ 0006 E0			varc	db	-32
+ 0007 00			eflag	db	0
+ 0008				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/02/08 12:13:56
+8_3.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0093	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0008	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0093 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  ahigh  . . . . . . . . . . . .	L Near	 000A	  code	
+  alow . . . . . . . . . . . . .	L Near	 0019	  code	
+  bhigh  . . . . . . . . . . . .	L Near	 0023	  code	
+  blow . . . . . . . . . . . . .	L Near	 002B	  code	
+  chigh  . . . . . . . . . . . .	L Near	 0033	  code	
+  clow . . . . . . . . . . . . .	L Near	 003A	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0041	  code	
+  errora . . . . . . . . . . . .	L Near	 0046	  code	
+  errorb . . . . . . . . . . . .	L Near	 004D	  code	
+  errorb2  . . . . . . . . . . .	L Near	 005B	  code	
+  errorc . . . . . . . . . . . .	L Near	 0062	  code	
+  errorc2  . . . . . . . . . . .	L Near	 007E	  code	
+  errorc3  . . . . . . . . . . .	L Near	 0085	  code	
+  errorc4  . . . . . . . . . . .	L Near	 008C	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+eflag  . . . . . . . . . . . . .	Byte	 0007	  data	
+vara . . . . . . . . . . . . . .	Word	 0000	  data	
+varb . . . . . . . . . . . . . .	Word	 0004	  data	
+varc . . . . . . . . . . . . . .	Byte	 0006	  data	
+
+	   0 Warnings
+	   0 Errors

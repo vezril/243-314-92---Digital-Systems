@@ -1,0 +1,27 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB9~1\2>debug 9_2.exe
+-d
+0E36:0000  B8 3A 0E 8E D8 B8 00 00-BB 00 00 BA 00 00 B9 33   .:.............3
+0E36:0010  00 43 83 FB 19 77 17 03-C3 83 D2 00 03 C1 83 D2   .C...w..........
+0E36:0020  00 03 C1 83 D2 00 41 83-F9 4B 77 E2 76 E9 86 C4   ......A..Kw.v...
+0E36:0030  86 D6 A3 02 00 89 16 00-00 B8 00 4C CD 21 00 00   ...........L.!..
+0E36:0040  00 00 00 00 74 68 5D 66-69 6C 65 6E 61 6D 65 31   ....th]filename1
+0E36:0050  20 66 69 6C 65 6E 61 6D-65 32 0D 0A 52 45 4E 20    filename2..REN 
+0E36:0060  5B 64 72 69 76 65 3A 5D-5B 70 61 74 68 5D 66 69   [drive:][path]fi
+0E36:0070  6C 65 6E 61 6D 65 31 20-66 69 6C 65 6E 61 6D 65   lename1 filename
+-g
+
+Program terminated normally
+-d cs:0
+0E36:0000  B8 3A 0E 8E D8 B8 00 00-BB 00 00 BA 00 00 B9 33   .:.............3
+0E36:0010  00 43 83 FB 19 77 17 03-C3 83 D2 00 03 C1 83 D2   .C...w..........
+0E36:0020  00 03 C1 83 D2 00 41 83-F9 4B 77 E2 76 E9 86 C4   ......A..Kw.v...
+0E36:0030  86 D6 A3 02 00 89 16 00-00 B8 00 4C CD 21 00 00   ...........L.!..
+0E36:0040  00 01 53 5B 74 68 5D 66-69 6C 65 6E 61 6D 65 31   ..S[th]filename1
+0E36:0050  20 66 69 6C 65 6E 61 6D-65 32 0D 0A 52 45 4E 20    filename2..REN 
+0E36:0060  5B 64 72 69 76 65 3A 5D-5B 70 61 74 68 5D 66 69   [drive:][path]fi
+0E36:0070  6C 65 6E 61 6D 65 31 20-66 69 6C 65 6E 61 6D 65   lename1 filename
+-q
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB9~1\2>tcap/u

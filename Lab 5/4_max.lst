@@ -1,0 +1,86 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 17:04:01
+4_max.asm						     Page 1 - 1
+
+
+				; PROGRAM: lab5_3.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  A1 0001 R		start:	mov	ax,val
+ 000E  8A 1E 0000 R			mov	bl,vam
+ 0012  2B 06 0003 R			sub	ax,vb
+ 0016  80 DB 00				sbb	bl,0
+ 0019  2B 06 0003 R			sub	ax,vb
+ 001D  80 DB 00				sbb	bl,0
+ 0020  2B 06 0005 R			sub	ax,vc
+ 0024  80 DB 00				sbb	bl,0
+ 0027  88 1E 0007 R			mov	resm,bl
+ 002B  A3 0008 R			mov	resl,ax
+
+
+ 002E  B8 4C00			shi:	mov	ax,4c00h
+ 0031  CD 21			        int	21h
+
+ 0033				main    ENDP
+ 0033				code    ENDS
+
+ 0000				data	SEGMENT  
+ 0000 00			vam	db	00h	;MSB of A
+ 0001 0001			val	dw	01h	;LSB of A
+ 0003 0001			vb	dw	01h	;B
+ 0005 0001			vc	dw	01h	;C
+ 0007 00			resm	db	?	;msb of result
+ 0008 0000			resl	dw	?	;lsb of result
+ 000A				data	ENDS
+				        END    
+ 
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 17:04:01
+4_max.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0033	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000A	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0033 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 000B	  code	
+  shi  . . . . . . . . . . . . .	L Near	 002E	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+resl . . . . . . . . . . . . . .	Word	 0008	  data	
+resm . . . . . . . . . . . . . .	Byte	 0007	  data	
+val  . . . . . . . . . . . . . .	Word	 0001	  data	
+vam  . . . . . . . . . . . . . .	Byte	 0000	  data	
+vb . . . . . . . . . . . . . . .	Word	 0003	  data	
+vc . . . . . . . . . . . . . . .	Word	 0005	  data	
+
+	   0 Warnings
+	   0 Errors

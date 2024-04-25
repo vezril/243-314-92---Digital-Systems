@@ -1,0 +1,34 @@
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> ffff
+The converted hex value in decimal is >> 065535
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> abcd
+The converted hex value in decimal is >> 043981
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> 1234
+The converted hex value in decimal is >> 004660
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> a780
+The converted hex value in decimal is >> 042880
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> 0a78
+The converted hex value in decimal is >> 002680
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> 00b4
+The converted hex value in decimal is >> 000180
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>4.exe
+Please enter a word in hexadecimal to convert >> 0000
+The converted hex value in decimal is >> 000000
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\4>
+
+
+
+
+
+
+
+
+
+
+

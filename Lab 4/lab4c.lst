@@ -1,0 +1,75 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/01/08 15:23:05
+lab4c.asm						     Page 1 - 1
+
+
+				;==============================================================
+				; PROGRAM: LAB4A.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  This program does basic arithmetic operations.
+				;============================================================== 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC
+				  
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+				      
+ 0005  A0 0002 R		start:	mov	al,vara	;moves the first variable
+ 0008  04 20				add	al,20h	;adds the 20h as a constant to vara
+ 000A  2A 06 0003 R			sub	al,varb	;subtracts from al varb
+ 000E  A2 0004 R			mov	varc,al ;wax off [C=(A+20h)-B]       
+
+ 0011  B8 4C00			fini:   mov	ax,4c00h
+ 0014  CD 21			        int	21h
+
+ 0016				main    ENDP
+ 0016				code    ENDS
+
+ 0000				data	SEGMENT
+ 0000 FFFF				mrk1	dw	0ffffh
+ 0002 60				vara	db	60h
+ 0003 80				varb	db	80h
+ 0004 00				varc	db	?
+ 0005 FFFF				mrk2	dw	0ffffh
+ 0007				data	ENDS
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    10/01/08 15:23:05
+lab4c.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0016	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0007	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0016 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  fini . . . . . . . . . . . . .	L Near	 0011	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+mrk1 . . . . . . . . . . . . . .	Word	 0000	  data	
+mrk2 . . . . . . . . . . . . . .	Word	 0005	  data	
+vara . . . . . . . . . . . . . .	Byte	 0002	  data	
+varb . . . . . . . . . . . . . .	Byte	 0003	  data	
+varc . . . . . . . . . . . . . .	Byte	 0004	  data	
+
+	   0 Warnings
+	   0 Errors

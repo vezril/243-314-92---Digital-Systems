@@ -1,0 +1,99 @@
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 14:53:10
+ptest2.asm						     Page 1 - 1
+
+
+				;---------------------------
+				;Author:        Calvin O. Ference
+				;description:   parallel test pgm
+				;pgm name:      ptest.asm
+				;Version 1.0
+				;---------------------------
+
+				        ASSUME  cs:code
+ = 0378				        LPT     equ     378h
+
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000  B8 0000			init:   mov     ax,0
+ 0003  BA 0000			        mov     dx,0
+ 0006  B9 0000			        mov     cx,0
+
+ 0009  BA 0378			a:   mov     dx,LPT
+ 000C  B0 20			        mov     al,20h
+ 000E  EE			        out     dx,al
+ 000F  E8 002F			        call    delay
+ 0012  BA 0378			b:    mov     dx,LPT
+ 0015  B0 D0			        mov     al,0d0h
+ 0017  EE			        out     dx,al
+ 0018  E8 0026			        call    delay
+ 001B  BA 0378			c1:      mov     dx,LPT
+ 001E  B0 AC			        mov     al,0ach
+ 0020  EE			        out     dx,al
+ 0021  E8 001D			        call    delay
+ 0024  BA 0378			d:      mov     dx,LPT
+ 0027  B0 2A			        mov     al,2ah
+ 0029  EE			        out     dx,al
+ 002A  E8 0014			        call    delay
+ 002D  BA 0378			e:      mov     dx,LPT
+ 0030  B0 41			        mov     al,41h
+ 0032  EE			        out     dx,al
+ 0033  E8 000B			        call    delay
+ 0036  BA 0378			f:      mov     dx,LPT
+ 0039  B0 B0			        mov     al,0B0h
+ 003B  EE			        out     dx,al
+ 003C  E8 0002			        call    delay
+ 003F  EB C8			        jmp     a
+				        
+				       
+
+ 0041				main    ENDP
+
+ 0041				delay   PROC
+ 0041  BB 0000			        mov     bx,0
+ 0044  90			d1:     nop
+ 0045  90			        nop
+ 0046  83 C3 01			        add     bx,1
+ 0049  83 FB FF			        cmp     bx,0ffffh
+ 004C  72 F6			        jb      d1
+ 004E  C3			        ret
+ 004F				delay   ENDP
+
+ 004F				code    ENDS
+				        END
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 14:53:10
+ptest2.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 004F	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+delay  . . . . . . . . . . . . .	P Near	 0041	  code	Length= 000E Public
+  d1 . . . . . . . . . . . . . .	L Near	 0044	  code	
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0041 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  a  . . . . . . . . . . . . . .	L Near	 0009	  code	
+  b  . . . . . . . . . . . . . .	L Near	 0012	  code	
+  c1 . . . . . . . . . . . . . .	L Near	 001B	  code	
+  d  . . . . . . . . . . . . . .	L Near	 0024	  code	
+  e  . . . . . . . . . . . . . .	L Near	 002D	  code	
+  f  . . . . . . . . . . . . . .	L Near	 0036	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+LPT  . . . . . . . . . . . . . .	Number	 0378h	 
+
+	   0 Warnings
+	   0 Errors

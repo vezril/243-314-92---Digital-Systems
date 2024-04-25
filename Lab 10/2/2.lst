@@ -1,0 +1,106 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 16:20:08
+2.asm							     Page 1 - 1
+
+
+				; PROGRAM: 10_2.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Looping, Indexing  and I/O
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  8D 3E 0000 R			lea	di,kanji
+ 000C  8D 36 0020 R			lea	si,buff
+
+ 0010  83 FF 21			hajime:	cmp	di,33		;this checks if di is at the final value
+ 0013  74 21				je	shi
+ 0015  8A 05				mov	al,[di]
+ 0017  3C 40				cmp	al,40h	;this will check if the value is a number
+ 0019  72 18				jb	ingore		;if so then jump to ingore
+ 001B  3C 5B				cmp	al,5Bh	;this checks if the value is a Upper Case value
+ 001D  72 04				jb	upperc		
+ 001F  3C 7B				cmp	al,7Bh	;and this checks if the value is lower case
+ 0021  72 08				jb	lowerc
+
+ 0023  04 20			upperc:		add	al,20h		;this transforms from Upper to lower case
+ 0025  88 04				mov	[si],al		;sending back to memory
+ 0027  47				inc	di
+ 0028  46				inc	si
+ 0029  EB E5				jmp	hajime
+
+ 002B  2C 20			lowerc:		sub	al,20h		;converting into lower case
+ 002D  88 04				mov	[si],al
+ 002F  47				inc	di
+ 0030  46				inc	si
+ 0031  EB DD				jmp	hajime
+					
+
+ 0033  47			ingore:	inc	di		;nothing much here
+ 0034  EB DA				jmp	hajime		;just ingores the number
+					
+								
+ 0036				shi:
+ 0036  B8 4C00				mov	ax,4c00h
+ 0039  CD 21				int	21h
+
+ 003B				main	ENDP
+ 003B				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 30 33 6F 48 34 74		kanji	db	"0","3","o","H","4","t","0","H","O","3","S","E","c","r","7","a","z","5","y","r","3","U","S","4","K","I","3","8","I","S","5","w"
+       30 48 4F 33 53 45
+       63 72 37 61 7A 35
+       79 72 33 55 53 34
+       4B 49 33 38 49 53
+       35 77
+ 0020  0020 [			buff	db	32 dup (0)
+        00
+       ]
+ 0040				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 16:20:08
+2.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 003B	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0040	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 003B Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  hajime . . . . . . . . . . . .	L Near	 0010	  code	
+  upperc . . . . . . . . . . . .	L Near	 0023	  code	
+  lowerc . . . . . . . . . . . .	L Near	 002B	  code	
+  ingore . . . . . . . . . . . .	L Near	 0033	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0036	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+buff . . . . . . . . . . . . . .	Byte	 0020	  data	
+kanji  . . . . . . . . . . . . .	Byte	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

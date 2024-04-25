@@ -1,0 +1,23 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > 30
+Out of Range, go to the Infinite Perspective Vortex
+Answer is > 00
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > 32
+Answer is > 0A
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > 45
+Answer is > 14
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > a9
+Answer is > 4C
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > c8
+Answer is > 5D
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>3.exe
+Enter a hex Value between 32h and C8h > da
+Out of Range, go to the Infinite Perspective Vortex
+Answer is > 00
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\3>tcap/u

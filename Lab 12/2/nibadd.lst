@@ -1,0 +1,70 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 18:34:58
+nibadd.asm						     Page 1 - 1
+
+
+				; PROGRAM: nibadd.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Byte Nibble Add
+				; 
+				; Version:	1.0	
+				; ENTER CONDITIONS : must have di point at the desired data segment
+				; EXIT CONDITIONS  : the result will be stored in al as max value it can reach is 3Ch
+					
+					PUBLIC	nibadd
+				        ASSUME	cs:code
+
+ 0000				code	SEGMENT
+ 0000				nibadd	PROC	FAR
+ 0000  53			init:	push	bx
+ 0001  51				push	cx
+ 0002  B1 04				mov	cl,4
+
+ 0004  8B 05			start:	mov	ax,[di]
+ 0006  8B D8				mov	bx,ax
+ 0008  25 0F0F				and	ax,0F0Fh	;masks the MS nibble
+ 000B  81 E3 F0F0			and	bx,0F0F0h	;masks the LS nibble
+ 000F  D3 CB				ror	bx,cl		;moves the bits to the right so that it's one byte value
+ 0011  02 DF				add	bl,bh		;adds them together
+ 0013  02 C4				add	al,ah		;adds these together as well
+ 0015  02 C3				add	al,bl		;and makes up the final sum
+ 0017  B4 00				mov	ah,0		;just to erase any unessary data
+ 0019  59				pop	cx		;returns any previous value stored
+ 001A  5B				pop	bx
+ 001B  CB				ret
+ 001C				nibadd	ENDP
+ 001C				code	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/27/08 18:34:58
+nibadd.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 001C	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+nibadd . . . . . . . . . . . . .	P Far	 0000	  code	Length= 001C Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0004	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

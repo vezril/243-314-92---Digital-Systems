@@ -1,0 +1,56 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/15/08 15:33:34
+6_1a.asm						     Page 1 - 1
+
+
+				; PROGRAM: 6_1a.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Multiplication program
+				; 
+				; 
+
+				        ASSUME	cs:code
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+
+ 0000  B0 05			start:	mov al,5
+ 0002  B3 07					mov	bl,7
+ 0004  F6 E3					mul	bl
+ 0006  04 01					add	al,1
+ 0008  B8 4C00			shi:	mov	ax,4c00h
+ 000B  CD 21					int	21h
+ 000D				main	ENDP
+ 000D				code	ENDS
+						
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    10/15/08 15:33:34
+6_1a.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 000D	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 000D Public
+  start  . . . . . . . . . . . .	L Near	 0000	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0008	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

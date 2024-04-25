@@ -1,0 +1,133 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/13/08 14:43:33
+3.asm							     Page 1 - 1
+
+
+				; PROGRAM: 3.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Fahrenheit to Celcius Conversion Program with I/O
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data, ss:stak
+					EXTRN	getbyte:FAR, newline:FAR, outstr:FAR, outbyte:FAR
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8					mov	ds,ax
+ 0005  B8 0000					mov	ax,0
+ 0008  BB 0000					mov	bx,0
+ 000B  C6 06 0002 R 00				mov	eflag,0 
+ 0010  8D 3E 0003 R		hajime:	lea	di,msg1
+ 0014  9A ---- 0000 E			call	outstr
+ 0019  9A ---- 0000 E			call	getbyte
+ 001E  A2 0000 R			mov	fah,al
+ 0021  9A ---- 0000 E			call	newline
+
+ 0026  A0 0000 R		start:	mov	al,fah
+ 0029  3C 32				cmp	al,32h
+ 002B  72 27				jb	error
+ 002D  3C C8				cmp	al,0c8h
+ 002F  77 23				ja	error
+ 0031  2C 20				sub	al,20h
+ 0033  B3 05				mov	bl,5
+ 0035  F6 E3				mul	bl
+ 0037  B3 09				mov	bl,9
+ 0039  F6 F3				div	bl
+ 003B  A2 0001 R			mov	cel,al
+						
+ 003E  8D 3E 002C R		shi:	lea	di,msg2
+ 0042  9A ---- 0000 E			call	outstr
+ 0047  A0 0001 R			mov	al,cel
+ 004A  9A ---- 0000 E			call	outbyte
+ 004F  B8 4C00				mov	ax,4c00h
+ 0052  CD 21				int	21h
+
+ 0054  C6 06 0002 R FF		error:	mov	eflag,0FFh
+ 0059  8D 3E 0039 R			lea	di,msg3
+ 005D  9A ---- 0000 E			call	outstr
+ 0062  9A ---- 0000 E			call	newline
+ 0067  EB D5				jmp	shi
+					
+ 0069				main	ENDP
+ 0069				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 00			fah	db	0
+ 0001 00			cel	db	0
+ 0002 00			eflag	db	0
+ 0003 45 6E 74 65 72 20		msg1	db	"Enter a hex Value between 32h and C8h > ",04h
+       61 20 68 65 78 20
+       56 61 6C 75 65 20
+       62 65 74 77 65 65
+       6E 20 33 32 68 20
+       61 6E 64 20 43 38
+       68 20 3E 20 04
+ 002C 41 6E 73 77 65 72		msg2	db	"Answer is > ",04h
+       20 69 73 20 3E 20
+       04
+ 0039 4F 75 74 20 6F 66		msg3	db	"Out of Range, go to the Infinite Perspective Vortex",04h
+       20 52 61 6E 67 65
+       2C 20 67 6F 20 74
+       6F 20 74 68 65 20
+       49 6E 66 69 6E 69
+       74 65 20 50 65 72
+       73 70 65 63 74 69
+       76 65 20 56 6F 72
+       74 65 78 04
+ 006D				data	ENDS
+
+ 0000				stak	SEGMENT	STACK
+ 0000  0100 [				dw	256 dup (0)
+        0000
+       ]
+ 0200				stak	ends
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/13/08 14:43:33
+3.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0069	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 006D	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0200	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0069 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  hajime . . . . . . . . . . . .	L Near	 0010	  code	
+  start  . . . . . . . . . . . .	L Near	 0026	  code	
+  shi  . . . . . . . . . . . . .	L Near	 003E	  code	
+  error  . . . . . . . . . . . .	L Near	 0054	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+cel  . . . . . . . . . . . . . .	Byte	 0001	  data	
+eflag  . . . . . . . . . . . . .	Byte	 0002	  data	
+fah  . . . . . . . . . . . . . .	Byte	 0000	  data	
+getbyte  . . . . . . . . . . . .	L Far	 0000	  External
+msg1 . . . . . . . . . . . . . .	Byte	 0003	  data	
+msg2 . . . . . . . . . . . . . .	Byte	 002C	  data	
+msg3 . . . . . . . . . . . . . .	Byte	 0039	  data	
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+outbyte  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors

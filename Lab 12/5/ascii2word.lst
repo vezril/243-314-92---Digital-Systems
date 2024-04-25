@@ -1,0 +1,161 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/28/08 22:02:24
+ascii2word.asm						     Page 1 - 1
+
+
+				; PROGRAM: ascii2word.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  converts an 5 digit ascii into a word
+				; 
+				; Version:	1.0	
+				; ENTER CONDITIONS : A 5 digit ascii value must be stored in a string and SI must have it point at the string
+				; EXIT CONDITIONS  : the result will appear in AX
+					
+					PUBLIC	ascii2word
+				        ASSUME	cs:code, ds:data
+					EXTRN	outstr:FAR, newline:FAR
+
+ 0000				code	SEGMENT
+ 0000				ascii2word	PROC	FAR
+ 0000  53			init:	push	bx
+ 0001  51				push	cx
+ 0002  B8 0000				mov	ax,0		;just making sure it's empty
+
+ 0005  8A 04			range:	mov	al,[si]
+ 0007  3C 36				cmp	al,"6"
+ 0009  77 7F				ja	outr
+ 000B  74 02				je	range2
+ 000D  EB 38				jmp	conv
+
+ 000F  46			range2:	inc	si
+ 0010  8A 04				mov	al,[si]
+ 0012  3C 35				cmp	al,"5"
+ 0014  77 74				ja	outr
+ 0016  74 03				je	range3
+ 0018  4E				dec	si
+ 0019  EB 2C				jmp	conv
+
+ 001B  46			range3:	inc	si
+ 001C  8A 04				mov	al,[si]
+ 001E  3C 35				cmp	al,"5"
+ 0020  77 68				ja	outr
+ 0022  74 04				je	range4
+ 0024  4E				dec	si
+ 0025  4E				dec	si
+ 0026  EB 1F				jmp	conv
+
+ 0028  46			range4:	inc	si
+ 0029  8A 04				mov	al,[si]
+ 002B  3C 33				cmp	al,"3"
+ 002D  77 5B				ja	outr
+ 002F  74 05				je	range5
+ 0031  83 EE 03				sub	si,3
+ 0034  EB 11				jmp	conv
+
+ 0036  46			range5:	inc	si
+ 0037  8A 04				mov	al,[si]
+ 0039  3C 35				cmp	al,"5"
+ 003B  76 ---- 0000  E EA		ja	outstr
+       ---- 0000 E
+ 0042  83 EE 04				sub	si,4
+ 0045  EB 00				jmp	conv
+
+ 0047  8A 04			conv:	mov	al,[si]
+ 0049  2C 30				sub	al,30h
+ 004B  BB 2710				mov	bx,2710h	;algorith for converting for 10^4
+ 004E  F7 E3				mul	bx
+ 0050  8B C8				mov	cx,ax		;moving it to a safe spot for now
+ 0052  46				inc	si		;next mem location
+ 0053  8A 04				mov	al,[si]
+ 0055  B4 00				mov	ah,0		;making sure it's empty
+ 0057  BB 03E8				mov	bx,03e8h	;algorithm for 10^3
+ 005A  2C 30				sub	al,30h
+ 005C  F7 E3				mul	bx
+ 005E  03 C8				add	cx,ax		;adding to values together
+ 0060  B8 0000				mov	ax,0		;clearing out ax
+ 0063  46				inc	si		;next mem locatio
+ 0064  8A 04				mov	al,[si]
+ 0066  2C 30				sub	al,30h
+ 0068  BB 0064				mov	bx,64h		;algorithm for 10^2
+ 006B  F7 E3				mul	bx
+ 006D  03 C8				add	cx,ax
+ 006F  46				inc	si
+ 0070  B8 0000				mov	ax,0
+ 0073  8A 04				mov	al,[si]
+ 0075  2C 30				sub	al,30h
+ 0077  BB 000A				mov	bx,0ah
+ 007A  F7 E3				mul	bx
+ 007C  03 C8				add	cx,ax
+ 007E  46				inc	si
+ 007F  8A 04				mov	al,[si]
+ 0081  2C 30				sub	al,30h
+ 0083  02 C8				add	cl,al
+ 0085  8B C1				mov	ax,cx
+ 0087  59				pop	cx
+ 0088  5B				pop	bx
+ 0089  CB				ret
+
+					
+
+ 008A  8D 3E 0000 R		outr:	lea	di,msg1
+ 008E  9A ---- 0000 E			call	newline
+ 0093  9A ---- 0000 E			call	outstr
+ 0098  B8 4C00				mov	ax,4c00h
+ 009B  CD 21				int	21h
+
+ 009D				ascii2word	ENDP
+ 009D				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 56 61 6C 75 65 20		msg1	db	"Value is out of range to fit in one word",04
+       69 73 20 6F 75 74
+       20 6F 66 20 72 61
+       6E 67 65 20 74 6F
+       20 66 69 74 20 69
+       6E 20 6F 6E 65 20
+       77 6F 72 64 04
+ 0029				data	ENDS
+					END
+
+
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/28/08 22:02:24
+ascii2word.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 009D	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0029	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+ascii2word . . . . . . . . . . .	P Far	 0000	  code	Length= 009D Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  range  . . . . . . . . . . . .	L Near	 0005	  code	
+  range2 . . . . . . . . . . . .	L Near	 000F	  code	
+  range3 . . . . . . . . . . . .	L Near	 001B	  code	
+  range4 . . . . . . . . . . . .	L Near	 0028	  code	
+  range5 . . . . . . . . . . . .	L Near	 0036	  code	
+  conv . . . . . . . . . . . . .	L Near	 0047	  code	
+  outr . . . . . . . . . . . . .	L Near	 008A	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+msg1 . . . . . . . . . . . . . .	Byte	 0000	  data	
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors

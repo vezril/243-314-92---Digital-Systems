@@ -1,0 +1,101 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 15:59:39
+lab5_2.asm						     Page 1 - 1
+
+
+				; PROGRAM: lab6_1.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+
+ 000B  A0 0006 R		mult:	mov	al,varb+1
+ 000E  8A 26 0005 R			mov	ah,varb
+ 0012  02 06 0006 R			add	al,varb+1
+ 0016  80 D4 00				adc	ah,0
+ 0019  02 26 0005 R			add	ah,varb
+ 001D  80 D3 00				adc	bl,0		;this multiplies B with itself
+ 0020  02 06 0004 R		adda:	add	al,vara+2	;adding A
+ 0024  80 D4 00				adc	ah,0
+ 0027  02 26 0003 R			add	ah,vara+1
+ 002B  80 D3 00				adc	bl,0
+ 002E  02 1E 0002 R			add	bl,vara
+ 0032  80 D7 00				adc	bh,0		; just in case
+ 0035  02 06 0007 R		addc:	add	al,varc		;adding C
+ 0039  80 D4 00				adc	ah,0
+ 003C  80 D3 00				adc	bl,0		
+ 003F  80 D7 00				adc	bh,0		; just in case also
+ 0042  88 1E 0008 R		waxoff:	mov	resm,bl
+ 0046  88 26 0009 R			mov	resl1,ah
+ 004A  A2 000A R			mov	resl2,al
+
+ 004D  B8 4C00			shi:	mov	ax,4c00h
+ 0050  CD 21			        int	21h
+
+ 0052				main    ENDP
+ 0052				code    ENDS
+
+ 0000				data	SEGMENT
+ 0000 FFFF			mkr1	dw	0FFFFh	;start marker   
+ 0002 02 49 F0			vara	db	02h,49h,0f0h
+ 0005 61 A8			varb	db	61h,0a8h
+ 0007 AF			varc	db	0AFh
+ 0008 00			resm	db	?	;msb for answer
+ 0009 00			resl1	db	?	;middle part of answer
+ 000A 00			resl2	db	?	;lsb for answer
+ 000B FFFF			mkr2	dw	0FFFFh	;end marker
+ 000D				data	ENDS
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 15:59:39
+lab5_2.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0052	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000D	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0052 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  mult . . . . . . . . . . . . .	L Near	 000B	  code	
+  adda . . . . . . . . . . . . .	L Near	 0020	  code	
+  addc . . . . . . . . . . . . .	L Near	 0035	  code	
+  waxoff . . . . . . . . . . . .	L Near	 0042	  code	
+  shi  . . . . . . . . . . . . .	L Near	 004D	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+mkr1 . . . . . . . . . . . . . .	Word	 0000	  data	
+mkr2 . . . . . . . . . . . . . .	Word	 000B	  data	
+resl1  . . . . . . . . . . . . .	Byte	 0009	  data	
+resl2  . . . . . . . . . . . . .	Byte	 000A	  data	
+resm . . . . . . . . . . . . . .	Byte	 0008	  data	
+vara . . . . . . . . . . . . . .	Byte	 0002	  data	
+varb . . . . . . . . . . . . . .	Byte	 0005	  data	
+varc . . . . . . . . . . . . . .	Byte	 0007	  data	
+
+	   0 Warnings
+	   0 Errors

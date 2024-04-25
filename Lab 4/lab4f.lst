@@ -1,0 +1,75 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/01/08 15:54:13
+lab4f.asm						     Page 1 - 1
+
+
+				;==============================================================
+				; PROGRAM: LAB4F.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  This program does basic arithmetic operations.
+				;============================================================== 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC
+				  
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+				      
+ 0005  A1 0002 R		start:	mov	ax,vara	;wax on
+ 0008  05 2000				add	ax,2000h;adds 2000h to vara
+ 000B  2B 06 0004 R			sub	ax,varb	;subtracts varb from vara
+ 000F  A1 0006 R			mov	ax,varc	;wax off
+					
+ 0012  B8 4C00			fini:   mov	ax,4c00h
+ 0015  CD 21			        int	21h
+
+ 0017				main    ENDP
+ 0017				code    ENDS
+
+ 0000				data	SEGMENT
+ 0000 FFFF				mrk1	dw	0ffffh
+ 0002 7000				vara	dw	7000h
+ 0004 1000				varb	dw	1000h
+ 0006 0000				varc	dw	?
+ 0008 FFFF				mrk2	dw	0ffffh
+ 000A				data	ENDS
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    10/01/08 15:54:13
+lab4f.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0017	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000A	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0017 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  fini . . . . . . . . . . . . .	L Near	 0012	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+mrk1 . . . . . . . . . . . . . .	Word	 0000	  data	
+mrk2 . . . . . . . . . . . . . .	Word	 0008	  data	
+vara . . . . . . . . . . . . . .	Word	 0002	  data	
+varb . . . . . . . . . . . . . .	Word	 0004	  data	
+varc . . . . . . . . . . . . . .	Word	 0006	  data	
+
+	   0 Warnings
+	   0 Errors

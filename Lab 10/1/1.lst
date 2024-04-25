@@ -1,0 +1,104 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 15:44:46
+1.asm							     Page 1 - 1
+
+
+				; PROGRAM: 10_1.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Looping, Indexing  and I/O
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  8D 3E 0000 R			lea	di,temp
+
+ 000C  83 FF 1C			hajime:	cmp	di,28
+ 000F  74 29				je	shi
+ 0011  8A 05				mov	al,[di]
+ 0013  3C 00				cmp	al,0
+ 0015  7F 14				jg	warm
+ 0017  7C 03				jl	cold
+ 0019  47				inc	di
+ 001A  EB F0				jmp	hajime
+
+ 001C  3A 06 001C R		cold:	cmp	al,froid
+ 0020  7C 03				jl	cold2
+ 0022  47				inc	di
+ 0023  EB E7				jmp	hajime
+ 0025  A2 001C R		cold2:	mov	froid,al
+ 0028  47				inc	di
+ 0029  EB E1				jmp	hajime
+
+ 002B  3A 06 001D R		warm:	cmp	al,wrm
+ 002F  77 03				ja	warm2
+ 0031  47				inc	di
+ 0032  EB D8				jmp	hajime
+ 0034  A2 001D R		warm2:	mov	wrm,al
+ 0037  47				inc	di
+ 0038  EB D2				jmp	hajime
+					
+								
+ 003A				shi:
+ 003A  B8 4C00				mov	ax,4c00h
+ 003D  CD 21				int	21h
+
+ 003F				main	ENDP
+ 003F				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 0B 0C 07 05 02 02		temp	db	11,12,7,5,2,2,-1,-3,-5,-9,-1,0,2,1,2,3,22,15,10,9,7,-10,-19,-22,1,2,4,3	
+       FF FD FB F7 FF 00
+       02 01 02 03 16 0F
+       0A 09 07 F6 ED EA
+       01 02 04 03
+ 001C 00			froid	db	0
+ 001D 00			wrm	db	0
+ 001E				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    11/12/08 15:44:46
+1.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 003F	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 001E	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 003F Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  hajime . . . . . . . . . . . .	L Near	 000C	  code	
+  cold . . . . . . . . . . . . .	L Near	 001C	  code	
+  cold2  . . . . . . . . . . . .	L Near	 0025	  code	
+  warm . . . . . . . . . . . . .	L Near	 002B	  code	
+  warm2  . . . . . . . . . . . .	L Near	 0034	  code	
+  shi  . . . . . . . . . . . . .	L Near	 003A	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+froid  . . . . . . . . . . . . .	Byte	 001C	  data	
+temp . . . . . . . . . . . . . .	Byte	 0000	  data	
+wrm  . . . . . . . . . . . . . .	Byte	 001D	  data	
+
+	   0 Warnings
+	   0 Errors

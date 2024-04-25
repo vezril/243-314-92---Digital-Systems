@@ -1,0 +1,84 @@
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 16:01:40
+ptest.asm						     Page 1 - 1
+
+
+				;---------------------------
+				;Author:        Calvin O. Ference
+				;description:   parallel port test pgm
+				;pgm name:      ptest.asm
+				;Version 1.0
+				;---------------------------
+
+				        ASSUME  cs:code
+ = 0378				        LPT     equ     378h
+
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000  B8 0000			init:   mov     ax,0
+ 0003  BA 0000			        mov     dx,0
+ 0006  B9 0000			        mov     cx,0
+
+ 0009  BA 0378			tlo:   mov     dx,LPT
+ 000C  B0 00			        mov     al,0
+ 000E  EE			        out     dx,al
+ 000F  E8 000B			        call    del1ms
+ 0012  BA 0378			thi:    mov     dx,LPT
+ 0015  B0 80			        mov     al,80h
+ 0017  EE			        out     dx,al
+ 0018  E8 0002			        call    del1ms
+				             
+				        
+ 001B  EB EC			        jmp     tlo
+
+ 001D				main    ENDP
+
+ 001D				del1ms  PROC
+ 001D  B9 0000			        mov	cx,0
+ 0020  BB 0000			d0:	mov     bx,0
+ 0023  90			d1:     nop
+ 0024  90			        nop
+ 0025  83 C3 01			        add     bx,1
+ 0028  83 FB FF			        cmp     bx,0ffffh
+ 002B  72 F6			        jb      d1
+ 002D  83 C1 01				add	cx,1
+ 0030  83 F9 0A				cmp	cx,10
+ 0033  72 EB				jb	d0
+ 0035  C3			        ret
+ 0036				del1ms   ENDP
+
+ 0036				code    ENDS
+				        END
+Microsoft (R) Macro Assembler Version 6.11d		    12/03/08 16:01:40
+ptest.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0036	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+del1ms . . . . . . . . . . . . .	P Near	 001D	  code	Length= 0019 Public
+  d0 . . . . . . . . . . . . . .	L Near	 0020	  code	
+  d1 . . . . . . . . . . . . . .	L Near	 0023	  code	
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 001D Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  tlo  . . . . . . . . . . . . .	L Near	 0009	  code	
+  thi  . . . . . . . . . . . . .	L Near	 0012	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+LPT  . . . . . . . . . . . . . .	Number	 0378h	 
+
+	   0 Warnings
+	   0 Errors

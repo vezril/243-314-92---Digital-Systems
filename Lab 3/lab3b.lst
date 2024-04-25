@@ -1,0 +1,111 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/24/08 16:40:01
+lab3b.asm						     Page 1 - 1
+
+
+				;=============================================================================
+				; PROGRAM: LAB3B.ASM
+				;
+				; DESCRIPTION: A program which demonstrates the manipulation of data variables
+				; in memory
+				;
+				; AUTHOR: Calvin Ouellet-Ference
+				;=============================================================================
+
+				        Assume cs:code, ds:data
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000				init:
+ 0000  B8 ---- R		        mov     ax,data ;beinging instructions
+ 0003  8E D8			        mov     ds,ax   ;data segment
+
+ 0005				start:
+ 0005  B8 55AA			        mov     ax,55aah
+ 0008  BB 96A5			        mov     bx,96a5h
+ 000B  B9 FFFF			        mov     cx,0ffffh
+
+ 000E				send2mem:
+
+ 000E  C7 06 0000 R CDAB	        mov     word1,0CDABh
+ 0014  C7 06 0002 R 96EF	        mov     word2,096EFh
+ 001A  C7 06 0004 R 5A5A	        mov     word3,5A5Ah
+ 0020  C7 06 0006 R BCDC	        mov     word4,0bcdch
+ 0026  C7 06 0007 R 6543	        mov     word4+1,6543h
+ 002C  C6 06 0010 R 99		        mov     byte1,99h
+ 0031  C6 06 0011 R 88		        mov     byte2,88h
+ 0036  C6 06 0012 R 55		        mov     bytes,55h
+ 003B  C6 06 0013 R 66		        mov     bytes+1,66h
+ 0040  C7 06 000E R 0304	        mov     word4+8,0304h
+ 0046  C7 06 0010 R 81EC	        mov     word4+10,81ech
+ 004C  C7 06 0012 R 84EC	        mov     word4+12,84ech
+ 0052  C7 06 0014 R 5700	        mov     word4+14,5700h
+ 0058  C7 06 0016 R E956	        mov     word4+16,0e956h
+ 005E  C7 06 0018 R 00BC	        mov     word4+18,00bch
+
+ 0064				back2dos:
+
+ 0064  B8 4C00			        mov     ax,4c00h
+ 0067  CD 21			        int     21h
+
+ 0069				main    ENDP
+ 0069				code    ENDS
+				;
+				; Data Section below
+				;
+				;
+				;
+				;
+
+ 0000				data    SEGMENT
+ 0000 9999			word1   DW      9999h   ;marker
+ 0002 0000			word2   DW      0
+ 0004 0000			word3   DW      0
+ 0006 0000			word4   DW      0
+ 0008  0004 [			        DW      4 DUP (0)
+        0000
+       ]
+ 0010 00			byte1   DB      0
+ 0011 00			byte2   DB      0
+ 0012 01 02 03 04		bytes   DB      1,2,3,4
+ 0016				data    ENDS
+
+				        END
+
+Microsoft (R) Macro Assembler Version 6.11d		    09/24/08 16:40:01
+lab3b.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0069	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0016	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0069 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  send2mem . . . . . . . . . . .	L Near	 000E	  code	
+  back2dos . . . . . . . . . . .	L Near	 0064	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+byte1  . . . . . . . . . . . . .	Byte	 0010	  data	
+byte2  . . . . . . . . . . . . .	Byte	 0011	  data	
+bytes  . . . . . . . . . . . . .	Byte	 0012	  data	
+word1  . . . . . . . . . . . . .	Word	 0000	  data	
+word2  . . . . . . . . . . . . .	Word	 0002	  data	
+word3  . . . . . . . . . . . . .	Word	 0004	  data	
+word4  . . . . . . . . . . . . .	Word	 0006	  data	
+
+	   0 Warnings
+	   0 Errors

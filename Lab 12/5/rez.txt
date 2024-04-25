@@ -1,0 +1,46 @@
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 65535
+The converted value is >> FFFF
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 00000
+The converted value is >> 0000
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 12345
+The converted value is >> 3039
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 56789
+The converted value is >> DDD5
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 00001
+The converted value is >> 0001
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 00010
+The converted value is >> 000A
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>5.exe
+Please enter a 5 digit value to convert >> 70000
+
+Please enter a 5 digit value to convert >>
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

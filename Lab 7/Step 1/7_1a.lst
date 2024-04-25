@@ -1,0 +1,72 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/22/08 14:56:37
+7_1a.asm						     Page 1 - 1
+
+
+				; PROGRAM: 6_1a.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Multiplication program
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC   
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8					mov	ds,ax
+ 0005  B8 0000					mov	ax,0
+ 0008  BB 0000					mov	bx,0
+ 000B  BA 0000					mov	dx,0 
+
+ 000E  B8 0100			start:	mov	ax,100h
+ 0011  BB 0005					mov	bx,5
+ 0014  F7 F3					div	bx
+ 0016  83 C0 01					add	ax,01
+ 0019  A2 0000 R				mov	rez,al
+						
+ 001C  B8 4C00			shi:	mov	ax,4c00h
+ 001F  CD 21					int	21h
+					
+ 0021				main	ENDP
+ 0021				code	ENDS
+
+ 0000				data	SEGMENT
+ 0000 00			rez		db	0
+ 0001				data	ENDS
+
+						END
+Microsoft (R) Macro Assembler Version 6.11d		    10/22/08 14:56:37
+7_1a.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0021	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0001	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 0021 Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 000E	  code	
+  shi  . . . . . . . . . . . . .	L Near	 001C	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+rez  . . . . . . . . . . . . . .	Byte	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

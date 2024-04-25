@@ -1,0 +1,103 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/24/08 15:26:04
+lab3.asm						     Page 1 - 1
+
+
+				;=============================================================================
+				; PROGRAM: LAB3.ASM
+				;
+				; DESCRIPTION: A program which demonstrates the manipulation of data variables
+				; in memory
+				;
+				; AUTHOR: Calvin Ouellet-Ference
+				;=============================================================================
+
+				        Assume cs:code, ds:data
+ 0000				code    SEGMENT
+ 0000				main    PROC
+ 0000				init:
+ 0000  B8 ---- R		        mov     ax,data ;beinging instructions
+ 0003  8E D8			        mov     ds,ax   ;data segment
+
+ 0005				start:
+ 0005  B8 55AA			        mov     ax,55aah
+ 0008  BB 96A5			        mov     bx,96a5h
+ 000B  B9 FFFF			        mov     cx,0ffffh
+
+ 000E				send2mem:
+
+ 000E  A3 0002 R		        mov     word2,ax
+ 0011  89 1E 0004 R		        mov     word3,bx
+ 0015  89 0E 000A R		        mov     word4+4,cx      ;adds 4 to word4
+ 0019  88 26 0010 R		        mov     byte1,ah
+ 001D  A2 0011 R		        mov     byte2,al
+ 0020  88 1E 0012 R		        mov     bytes,bl
+ 0024  88 3E 0013 R		        mov     bytes+1,bh      ;adds 1 to bytes
+
+ 0028				back2dos:
+
+ 0028  B8 4C00			        mov     ax,4c00h
+ 002B  CD 21			        int     21h
+
+ 002D				main    ENDP
+ 002D				code    ENDS
+				;
+				; Data Section below
+				;
+				;
+				;
+				;
+
+ 0000				data    SEGMENT
+ 0000 9999			word1   DW      9999h   ;marker
+ 0002 0000			word2   DW      0
+ 0004 0000			word3   DW      0
+ 0006 0000			word4   DW      0
+ 0008  0004 [			        DW      4 DUP (0)
+        0000
+       ]
+ 0010 00			byte1   DB      0
+ 0011 00			byte2   DB      0
+ 0012 01 02 03 04		bytes   DB      1,2,3,4
+ 0016				data    ENDS
+
+				        END
+
+Microsoft (R) Macro Assembler Version 6.11d		    09/24/08 15:26:04
+lab3.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 002D	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0016	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 002D Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  start  . . . . . . . . . . . .	L Near	 0005	  code	
+  send2mem . . . . . . . . . . .	L Near	 000E	  code	
+  back2dos . . . . . . . . . . .	L Near	 0028	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+byte1  . . . . . . . . . . . . .	Byte	 0010	  data	
+byte2  . . . . . . . . . . . . .	Byte	 0011	  data	
+bytes  . . . . . . . . . . . . .	Byte	 0012	  data	
+word1  . . . . . . . . . . . . .	Word	 0000	  data	
+word2  . . . . . . . . . . . . .	Word	 0002	  data	
+word3  . . . . . . . . . . . . .	Word	 0004	  data	
+word4  . . . . . . . . . . . . .	Word	 0006	  data	
+
+	   0 Warnings
+	   0 Errors

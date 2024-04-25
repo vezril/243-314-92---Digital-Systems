@@ -1,0 +1,42 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\4>4.exe
+Enter the size of data in words in HEX (Max 19h) >> 02
+Please enter Value >> 1234
+Please enter Value >> 5678
+The sum of the Values is >> 000068AC
+The Average of the values is >> 00003456
+The Biggest Value is >> 5678
+The Smallest Value is >> 1234
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\4>4.exe
+Enter the size of data in words in HEX (Max 19h) >> ab
+Out of the range, into the vortex! 
+Enter the size of data in words in HEX (Max 19h) >> cd
+Out of the range, into the vortex! 
+Enter the size of data in words in HEX (Max 19h) >> 05
+Please enter Value >> abcd
+Please enter Value >> dead
+Please enter Value >> 0987
+Please enter Value >> 1234
+Please enter Value >> 8365
+The sum of the Values is >> 0002299A
+The Average of the values is >> 00026EB8
+The Biggest Value is >> DEAD
+The Smallest Value is >> 0987
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\4>4.exe
+Enter the size of data in words in HEX (Max 19h) >> 0a
+Please enter Value >> 1234
+Please enter Value >> 5678
+Please enter Value >> 9012
+Please enter Value >> abcd
+Please enter Value >> ef34
+Please enter Value >> 8436
+Please enter Value >> 9456
+Please enter Value >> 0087
+Please enter Value >> 6341
+Please enter Value >> 0001
+The sum of the Values is >> 00041014
+The Average of the values is >> 00006802
+The Biggest Value is >> EF34
+The Smallest Value is >> 0001
+E:\ELECTR~1\SEMEST~1\243-31~1\LAB10~1\4>tcap/u

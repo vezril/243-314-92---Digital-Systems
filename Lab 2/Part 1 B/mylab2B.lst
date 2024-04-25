@@ -1,0 +1,58 @@
+Microsoft (R) Macro Assembler Version 6.11d		    09/17/08 15:18:31
+mylab2B.asm						     Page 1 - 1
+
+
+				; PROGRAM: mylab2B.ASM
+				;
+				; AUTHOR:  Calvin O. Ference
+				;
+				; DESCRIPTION:  This program adds certain HEX values to
+				;               the general registers
+
+
+				        ASSUME	cs:code
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    FAR
+ 0000				hajime:
+ 0000  B8 FD8E			        mov     ax,0FD8Eh
+ 0003  BB 9666			        mov     bx,9666h
+ 0006  B9 A5AA			        mov     cx,0A5AAh
+ 0009  BA 189B			        mov     dx,189Bh
+ 000C				shi:
+ 000C  B8 4C00			        mov     ax,4C00h
+ 000F  CD 21			        int     21h
+
+ 0011				main    ENDP
+ 0011				code    ENDS
+
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    09/17/08 15:18:31
+mylab2B.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0011	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Far	 0000	  code	Length= 0011 Public
+  hajime . . . . . . . . . . . .	L Near	 0000	  code	
+  shi  . . . . . . . . . . . . .	L Near	 000C	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+
+	   0 Warnings
+	   0 Errors

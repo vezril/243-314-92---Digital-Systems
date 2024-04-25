@@ -1,0 +1,84 @@
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 16:47:21
+lab5_3.asm						     Page 1 - 1
+
+
+				; PROGRAM: lab5_3.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  
+				; 
+				; 
+
+				        ASSUME	cs:code, ds:data
+
+ 0000				code    SEGMENT
+ 0000				main    PROC    
+
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  BB 0000				mov	bx,0
+ 000B  A1 0003 R		mult:	mov	ax,vb
+ 000E  03 06 0003 R			add	ax,vb	;no need for carry, max is C350h
+ 0012  03 06 0005 R		arith:	add	ax,vc	;no need for carry, max is c3f5h
+ 0016  03 06 0001 R			add	ax,val
+ 001A  80 D3 00				adc	bl,0
+ 001D  02 1E 0000 R			add	bl,vam
+ 0021  88 1E 0007 R		waxoff:	mov	resm,bl
+ 0025  A3 0008 R			mov	resl,ax
+
+ 0028  B8 4C00			shi:	mov	ax,4c00h
+ 002B  CD 21			        int	21h
+
+ 002D				main    ENDP
+ 002D				code    ENDS
+
+ 0000				data	SEGMENT  
+ 0000 02			vam	db	02h	;MSB of A
+ 0001 49F0			val	dw	49F0h	;LSB of A
+ 0003 61A8			vb	dw	61A8h	;B
+ 0005 00AF			vc	dw	0AFh	;C
+ 0007 00			resm	db	?	;msb of result
+ 0008 0000			resl	dw	?	;lsb of result
+ 000A				data	ENDS
+				        END    
+Microsoft (R) Macro Assembler Version 6.11d		    10/08/08 16:47:21
+lab5_3.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 002D	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000A	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 002D Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  mult . . . . . . . . . . . . .	L Near	 000B	  code	
+  arith  . . . . . . . . . . . .	L Near	 0012	  code	
+  waxoff . . . . . . . . . . . .	L Near	 0021	  code	
+  shi  . . . . . . . . . . . . .	L Near	 0028	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+resl . . . . . . . . . . . . . .	Word	 0008	  data	
+resm . . . . . . . . . . . . . .	Byte	 0007	  data	
+val  . . . . . . . . . . . . . .	Word	 0001	  data	
+vam  . . . . . . . . . . . . . .	Byte	 0000	  data	
+vb . . . . . . . . . . . . . . .	Word	 0003	  data	
+vc . . . . . . . . . . . . . . .	Word	 0005	  data	
+
+	   0 Warnings
+	   0 Errors

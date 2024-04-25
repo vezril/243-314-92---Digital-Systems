@@ -1,0 +1,128 @@
+Microsoft (R) Macro Assembler Version 6.11d		    11/26/08 16:17:35
+bitcnt2.asm						     Page 1 - 1
+
+
+				; PROGRAM: bitcnt.ASM
+				;
+				; AUTHOR: Calvin O. Ference
+				;
+				; DESCRIPTION:  Bit Counter
+				; 
+				; Version:	1.0	
+					
+					PUBLIC	bitcnt
+				        ASSUME	cs:code, ss:stak
+					EXTRN	outstr:FAR, getbyte:FAR, getword:FAR, outbyte:FAR, outword:FAR, newline:FAR
+					EXTRN	getc:FAR
+
+ 0000				code	SEGMENT
+ 0000				main	PROC
+ 0000  B8 ---- R		init:	mov	ax,data
+ 0003  8E D8				mov	ds,ax
+ 0005  B8 0000				mov	ax,0
+ 0008  9A ---- 0000 E			call	getword
+ 000D  9A ---- 0000 E			call	newline
+ 0012  E8 000A				call	bitcnt
+ 0015  9A ---- 0000 E			call	outword
+ 001A  B8 4C00			shi:	mov	ax,4c00h
+ 001D  CD 21				int	21h
+ 001F				main	ENDP
+
+ 001F				bitcnt	PROC	
+ 001F  53			init:	push	bx
+ 0020  51				push	cx	;gonna use this for my counter
+ 0021  B1 0F				mov	cl,15
+ 0023  8B D8				mov	bx,ax
+
+ 0025  83 E3 01			start: 	and	bx,1
+ 0028  83 FB 01				cmp	bx,1	;evals if there's a 1 or not
+ 002B  74 0B				je	yup
+ 002D  D1 C3				rol	bx,1
+ 002F  FE C9				dec	cl	;this is the loop cnt
+ 0031  80 F9 00				cmp	cl,0
+ 0034  74 0F				je	next
+ 0036  EB ED				jmp	start
+					
+
+ 0038  FE C5			yup:	inc	ch	;this is my 1 cnt
+ 003A  D1 C3				rol	bx,1	;rdy's for the next eval
+ 003C  FE C9				dec	cl
+ 003E  80 F9 00				cmp	cl,0	;checks if the loop is done
+ 0041  74 02				je	next
+ 0043  EB E0				jmp	start
+
+ 0045  80 F9 08			next:	cmp	cl,8
+ 0048  73 02				jae	ones
+ 004A  EB 05				jmp	zeros
+
+ 004C  0D 8000			ones:	or	ax,8000h
+ 004F  EB 05				jmp	done
+
+ 0051  25 7FFF			zeros:	and	ax,7FFFh
+ 0054  EB 00				jmp	done
+
+ 0056  59			done:	pop	cx
+ 0057  5B				pop	bx
+ 0058  C3				ret
+ 0059				bitcnt	ENDP
+ 0059				code	ENDS
+
+
+ 0000				data	SEGMENT
+ 0000 00			val	db	0
+ 0001				data	ENDS
+
+ 0000				stak	SEGMENT	STACK
+ 0000  0400 [				dw	1024 dup (0)
+        0000
+       ]
+ 0800				stak	ENDS
+					END
+
+Microsoft (R) Macro Assembler Version 6.11d		    11/26/08 16:17:35
+bitcnt2.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0059	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0001	  Para	  Private 
+stak . . . . . . . . . . . . . .	16 Bit	 0800	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+bitcnt . . . . . . . . . . . . .	P Near	 001F	  code	Length= 003A Public
+  init . . . . . . . . . . . . .	L Near	 001F	  code	
+  start  . . . . . . . . . . . .	L Near	 0025	  code	
+  yup  . . . . . . . . . . . . .	L Near	 0038	  code	
+  next . . . . . . . . . . . . .	L Near	 0045	  code	
+  ones . . . . . . . . . . . . .	L Near	 004C	  code	
+  zeros  . . . . . . . . . . . .	L Near	 0051	  code	
+  done . . . . . . . . . . . . .	L Near	 0056	  code	
+main . . . . . . . . . . . . . .	P Near	 0000	  code	Length= 001F Public
+  init . . . . . . . . . . . . .	L Near	 0000	  code	
+  shi  . . . . . . . . . . . . .	L Near	 001A	  code	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+getbyte  . . . . . . . . . . . .	L Far	 0000	  External
+getc . . . . . . . . . . . . . .	L Far	 0000	  External
+getword  . . . . . . . . . . . .	L Far	 0000	  External
+newline  . . . . . . . . . . . .	L Far	 0000	  External
+outbyte  . . . . . . . . . . . .	L Far	 0000	  External
+outstr . . . . . . . . . . . . .	L Far	 0000	  External
+outword  . . . . . . . . . . . .	L Far	 0000	  External
+val  . . . . . . . . . . . . . .	Byte	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

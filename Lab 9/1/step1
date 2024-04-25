@@ -1,0 +1,16 @@
+Capture file written by TCAP 3.0, TCAP Copyright(c) 1998 Tim Kannel
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB9~1\1>tcap/1
+
+Usage:  TCAP [options] [filename] [/C command [parameters]]
+        /?          display help
+        /B=size     specify Buffer size in kilobytes (default=8)
+        /ON         turn capturing ON
+        /OFF        turn capturing PFF
+        /N          No filename swap (with /C option only)
+        /U          Uninstall the program
+        filename    name of file that text is copied to
+                    (defaults to TCAP.TXT)
+        /C command  run and capture text from 'command'
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB9~1\1>tcap/u

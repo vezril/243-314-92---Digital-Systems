@@ -1,0 +1,21 @@
+
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\3>3.exe
+Please enter an byte in hexadecimal to convert >> ff
+The converted hex value in decimal is >> 0255
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\3>3.exe
+Please enter an byte in hexadecimal to convert >> a0
+The converted hex value in decimal is >> 0160
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\3>3.exe
+Please enter an byte in hexadecimal to convert >> 12
+The converted hex value in decimal is >> 0018
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\3>3.exe
+Please enter an byte in hexadecimal to convert >> 00
+The converted hex value in decimal is >> 0000
+G:\ELECTR~1\SEMEST~1\243-31~1\LAB12~1\3>
+
+
+
+
+
+
+
